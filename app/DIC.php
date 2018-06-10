@@ -20,18 +20,18 @@ class DIC
     /**
      * Выполним действие
      *
-     * @param Container $di Контейнер
+     * @param Container $dic Контейнер
      *
      * @return boolean
      *
      * @version 06.06.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
-    public function run(Container $di)
+    public function run(Container $dic)
     {
         // Здесь вы можете добавлять свои элементы в контейнер
         // Используется контейнер Pimple (https://github.com/silexphp/Pimple)
-        // Пример: $di['my-element'] = 'My super element';
+        // Пример: $dic['my-element'] = 'My super element';
 
         return true;
     }
