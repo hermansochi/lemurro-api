@@ -2,7 +2,7 @@
 /**
  * Шаблоны электронных писем
  *
- * @version 01.01.2018
+ * @version 09.07.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -86,6 +86,26 @@ TPL;
 <tr>
     <td>
         Ваш код для входа: <strong>[SECRET]</strong>
+    </td>
+</tr>
+TPL;
+
+    // .d8888. d888888b .88b  d88. d8888b. db      d88888b         .88b  d88. d88888b .d8888. .d8888.  .d8b.   d888b  d88888b
+    // 88'  YP   `88'   88'YbdP`88 88  `8D 88      88'             88'YbdP`88 88'     88'  YP 88'  YP d8' `8b 88' Y8b 88'
+    // `8bo.      88    88  88  88 88oodD' 88      88ooooo         88  88  88 88ooooo `8bo.   `8bo.   88ooo88 88      88ooooo
+    //   `Y8b.    88    88  88  88 88~~~   88      88~~~~~         88  88  88 88~~~~~   `Y8b.   `Y8b. 88~~~88 88  ooo 88~~~~~
+    // db   8D   .88.   88  88  88 88      88booo. 88.             88  88  88 88.     db   8D db   8D 88   88 88. ~8~ 88.
+    // `8888Y' Y888888P YP  YP  YP 88      Y88888P Y88888P C88888D YP  YP  YP Y88888P `8888Y' `8888Y' YP   YP  Y888P  Y88888P
+    //
+    //
+
+    /**
+     * Просто сообщение
+     */
+    const SIMPLE_MESSAGE = <<<TPL
+<tr>
+    <td>
+        [CONTENT]
     </td>
 </tr>
 TPL;
