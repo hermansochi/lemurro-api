@@ -2,7 +2,7 @@
 /**
  * Параметры БД
  *
- * @version 01.01.2018
+ * @version 11.07.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -15,6 +15,11 @@ namespace Lemurro\Api\App\Configs;
  */
 class SettingsDatabase
 {
+    /**
+     * Нужно ли подключаться к БД
+     */
+    const NEED_CONNECT = true;
+
     /**
      * Сервер
      */
