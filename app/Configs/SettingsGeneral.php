@@ -2,7 +2,7 @@
 /**
  * Основные параметры
  *
- * @version 03.04.2018
+ * @version 26.07.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -63,4 +63,9 @@ class SettingsGeneral
      * Время устаревания сессий (в днях), сессии которыми не пользовались
      */
     const SESSIONS_OLDER_THAN = 30;
+
+    /**
+     * Привязка сессии к IP-адресу
+     */
+    const SESSIONS_BINDING_TO_IP = false;
 }
