@@ -2,7 +2,7 @@
 /**
  * Список справочника
  *
- * @version 03.04.2018
+ * @version 26.09.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -22,19 +22,20 @@ class ActionIndex extends Action
      *
      * @return array
      *
-     * @version 03.04.2018
+     * @version 26.09.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run()
     {
         return [
             'data' => [
-                'count' => 2,
-                'items' => [
+                'js_class' => 'guideExample',
+                'items'    => [
                     [
                         'id'   => 1,
                         'name' => 'Первая запись',
-                    ], [
+                    ],
+                    [
                         'id'   => 2,
                         'name' => 'Вторая запись',
                     ],
