@@ -1,0 +1,4 @@
+example:
+  path: /example
+  controller: 'Lemurro\Api\App\Example\ControllerIndex'
+  methods: [GET, OPTIONS]

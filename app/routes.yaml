@@ -1,4 +1,2 @@
-#example:
-#  path: /example
-#  controller: 'Lemurro\Api\App\Example\ControllerIndex'
-#  methods: [GET, OPTIONS]
+app_route_example:
+  resource: 'app/Routes/example.yaml'
