@@ -2,7 +2,7 @@
 /**
  * Список справочника
  *
- * @version 26.09.2018
+ * @version 28.10.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -22,25 +22,32 @@ class ActionIndex extends Action
      *
      * @return array
      *
-     * @version 26.09.2018
+     * @version 28.10.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run()
     {
-        return [
-            'data' => [
-                'js_class' => 'guideExample',
-                'items'    => [
-                    [
-                        'id'   => 1,
-                        'name' => 'Первая запись',
-                    ],
-                    [
-                        'id'   => 2,
-                        'name' => 'Вторая запись',
-                    ],
+        $items = \ORM::for_table('guide_example')
+            ->select_many('id', 'name')
+            ->where_null('deleted_at')
+            ->order_by_asc('name')
+            ->find_array();
+        if (is_array($items)) {
+            return [
+                'data' => [
+                    'js_class' => 'guideExample',
+                    'count'    => count($items),
+                    'items'    => $items,
                 ],
-            ],
-        ];
+            ];
+        } else {
+            return [
+                'data' => [
+                    'js_class' => 'guideExample',
+                    'count'    => 0,
+                    'items'    => [],
+                ],
+            ];
+        }
     }
 }

@@ -2,7 +2,7 @@
 /**
  * Получение элемента из справочника
  *
- * @version 03.04.2018
+ * @version 28.10.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -24,16 +24,27 @@ class ActionGet extends Action
      *
      * @return array
      *
-     * @version 03.04.2018
+     * @version 28.10.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id)
     {
-        return [
-            'data' => [
-                'id'   => $id,
-                'name' => 'Имя записи',
-            ],
-        ];
+        $record = (new OneRecord($this->dic))->get($id);
+
+        if (is_object($record)) {
+            return [
+                'data' => $record->as_array(),
+            ];
+        } else {
+            return [
+                'errors' => [
+                    [
+                        'status' => '404 Not Found',
+                        'code'   => 'info',
+                        'title'  => 'Запись не найдена',
+                    ],
+                ],
+            ];
+        }
     }
 }

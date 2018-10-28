@@ -2,7 +2,7 @@
 /**
  * Изменение элемента в справочнике
  *
- * @version 03.04.2018
+ * @version 28.10.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -25,16 +25,44 @@ class ActionSave extends Action
      *
      * @return array
      *
-     * @version 03.04.2018
+     * @version 28.10.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id, $data)
     {
-        return [
-            'data' => [
-                'id'   => $id,
-                'name' => $data['name'],
-            ],
-        ];
+        $record = (new OneRecord($this->dic))->get($id);
+
+        if (is_object($record)) {
+            $record->name = $data['name'];
+            $record->updated_at = $this->dic['datetimenow'];
+            $record->save();
+            if (is_object($record) && isset($record->id)) {
+                $this->dic['datachangelog']->insert('guide_example', 'update', $id, $data);
+
+                return [
+                    'data' => $data,
+                ];
+            } else {
+                return [
+                    'errors' => [
+                        [
+                            'status' => '500 Internal Server Error',
+                            'code'   => 'danger',
+                            'title'  => 'Произошла ошибка при изменении записи, попробуйте ещё раз',
+                        ],
+                    ],
+                ];
+            }
+        } else {
+            return [
+                'errors' => [
+                    [
+                        'status' => '404 Not Found',
+                        'code'   => 'info',
+                        'title'  => 'Запись не найдена',
+                    ],
+                ],
+            ];
+        }
     }
 }

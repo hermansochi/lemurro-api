@@ -2,7 +2,7 @@
 /**
  * Удаление элемента из справочника
  *
- * @version 03.04.2018
+ * @version 28.10.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -24,15 +24,46 @@ class ActionRemove extends Action
      *
      * @return array
      *
-     * @version 03.04.2018
+     * @version 28.10.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id)
     {
-        return [
-            'data' => [
-                'id' => $id,
-            ],
-        ];
+        $record = (new OneRecord($this->dic))->get($id);
+
+        if (is_object($record)) {
+            $record->name = $record->name . ' (удалено: ' . $this->dic['datetimenow'] . ')';
+            $record->deleted_at = $this->dic['datetimenow'];
+            $record->save();
+            if (is_object($record) && isset($record->id)) {
+                $this->dic['datachangelog']->insert('guide_example', 'delete', $id);
+
+                return [
+                    'data' => [
+                        'id' => $record->id,
+                    ],
+                ];
+            } else {
+                return [
+                    'errors' => [
+                        [
+                            'status' => '500 Internal Server Error',
+                            'code'   => 'danger',
+                            'title'  => 'Произошла ошибка при удалении записи, попробуйте ещё раз',
+                        ],
+                    ],
+                ];
+            }
+        } else {
+            return [
+                'errors' => [
+                    [
+                        'status' => '404 Not Found',
+                        'code'   => 'info',
+                        'title'  => 'Запись не найдена',
+                    ],
+                ],
+            ];
+        }
     }
 }

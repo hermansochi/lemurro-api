@@ -2,7 +2,7 @@
 /**
  * Добавление элемента в справочник
  *
- * @version 03.04.2018
+ * @version 28.10.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -24,16 +24,33 @@ class ActionInsert extends Action
      *
      * @return array
      *
-     * @version 03.04.2018
+     * @version 28.10.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($data)
     {
-        return [
-            'data' => [
-                'id'   => 3,
-                'name' => $data['name'],
-            ],
-        ];
+        $record = \ORM::for_table('guide_example')->create();
+        $record->name = $data['name'];
+        $record->created_at = $this->dic['datetimenow'];
+        $record->save();
+        if (is_object($record) && isset($record->id)) {
+            $data['id'] = $record->id;
+
+            $this->dic['datachangelog']->insert('guide_example', 'insert', $record->id, $data);
+
+            return [
+                'data' => $data,
+            ];
+        } else {
+            return [
+                'errors' => [
+                    [
+                        'status' => '500 Internal Server Error',
+                        'code'   => 'danger',
+                        'title'  => 'Произошла ошибка при добавлении записи, попробуйте ещё раз',
+                    ],
+                ],
+            ];
+        }
     }
 }
