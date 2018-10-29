@@ -2,14 +2,13 @@
 /**
  * Список мероприятий
  *
- * @version 28.10.2018
+ * @version 29.10.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Example;
 
 use Lemurro\Api\Core\Abstracts\Controller;
-use Lemurro\Api\Core\Checker\Checker;
 
 /**
  * Class ControllerIndex
@@ -21,13 +20,11 @@ class ControllerIndex extends Controller
     /**
      * Стартовый метод
      *
-     * @version 28.10.2018
+     * @version 29.10.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function start()
     {
-        $checker = new Checker($this->dic);
-
         $checker_checks = [
             'auth' => '',
             'role' => [
@@ -35,7 +32,7 @@ class ControllerIndex extends Controller
                 'access' => 'read',
             ],
         ];
-        $checker_result = $checker->run($checker_checks);
+        $checker_result = $this->dic['checker']->run($checker_checks);
         if (count($checker_result) > 0) {
             $this->response->setData($checker_result);
         } else {
