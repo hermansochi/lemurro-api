@@ -33,10 +33,10 @@ class ControllerIndex extends Controller
             ],
         ];
         $checker_result = $this->dic['checker']->run($checker_checks);
-        if (count($checker_result) > 0) {
-            $this->response->setData($checker_result);
-        } else {
+        if (is_array($checker_result) && count($checker_result) == 0) {
             $this->response->setData((new ActionIndex($this->dic))->run());
+        } else {
+            $this->response->setData($checker_result);
         }
 
         $this->response->send();

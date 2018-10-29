@@ -33,13 +33,13 @@ class ControllerSave extends Controller
             ],
         ];
         $checker_result = $this->dic['checker']->run($checker_checks);
-        if (count($checker_result) > 0) {
-            $this->response->setData($checker_result);
-        } else {
+        if (is_array($checker_result) && count($checker_result) == 0) {
             $this->response->setData((new ActionSave($this->dic))->run(
                 $this->request->get('id'),
                 $this->request->get('data')
             ));
+        } else {
+            $this->response->setData($checker_result);
         }
 
         $this->response->send();
