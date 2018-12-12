@@ -26,16 +26,6 @@ class SettingsGeneral
     const APP_NAME = 'Lemurro';
 
     /**
-     * Полный путь до корня (с конечной "/")
-     */
-    const FULL_ROOT_PATH = __DIR__ . '/../../';
-
-    /**
-     * Полный путь до каталога логов (с конечной "/")
-     */
-    const LOGS_PATH = __DIR__ . '/../../logs/';
-
-    /**
      * Временная зона
      */
     const TIMEZONE = 'UTC';
