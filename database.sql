@@ -71,12 +71,15 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Информация о пользователях (добавляйте любые дополнительные поля)
 CREATE TABLE IF NOT EXISTS `info_users` (
-  `id`         INT(11) NOT NULL AUTO_INCREMENT,
-  `user_id`    INT(11) NOT NULL,
-  `roles`      TEXT,
-  `created_at` DATETIME,
-  `updated_at` DATETIME,
-  `deleted_at` DATETIME,
+  `id`          INT(11)      NOT NULL AUTO_INCREMENT,
+  `user_id`     INT(11)      NOT NULL,
+  `roles`       TEXT,
+  `first_name`  VARCHAR(255) NULL,
+  `second_name` VARCHAR(255) NULL,
+  `last_name`   VARCHAR(255) NULL,
+  `created_at`  DATETIME,
+  `updated_at`  DATETIME,
+  `deleted_at`  DATETIME,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
