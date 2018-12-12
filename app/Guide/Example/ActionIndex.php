@@ -2,13 +2,14 @@
 /**
  * Список справочника
  *
- * @version 28.10.2018
+ * @version 12.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
+use ORM;
 
 /**
  * Class ActionIndex
@@ -22,12 +23,12 @@ class ActionIndex extends Action
      *
      * @return array
      *
-     * @version 28.10.2018
+     * @version 12.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run()
     {
-        $items = \ORM::for_table('guide_example')
+        $items = ORM::for_table('guide_example')
             ->select_many('id', 'name')
             ->where_null('deleted_at')
             ->order_by_asc('name')

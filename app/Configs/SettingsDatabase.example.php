@@ -47,8 +47,8 @@ class SettingsDatabase
 
     /**
      * Сбор выполняемых запросов:
-     * \ORM::get_last_query() (Возвращает строку)
-     * \ORM::get_query_log() (Возвращает массив)
+     * ORM::get_last_query() (Возвращает строку)
+     * ORM::get_query_log() (Возвращает массив)
      */
     const LOGGING = true;
 }

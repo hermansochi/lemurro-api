@@ -2,13 +2,14 @@
 /**
  * Добавление элемента в справочник
  *
- * @version 28.10.2018
+ * @version 12.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
+use ORM;
 
 /**
  * Class ActionInsert
@@ -24,12 +25,12 @@ class ActionInsert extends Action
      *
      * @return array
      *
-     * @version 28.10.2018
+     * @version 12.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($data)
     {
-        $record = \ORM::for_table('guide_example')->create();
+        $record = ORM::for_table('guide_example')->create();
         $record->name = $data['name'];
         $record->created_at = $this->dic['datetimenow'];
         $record->save();
