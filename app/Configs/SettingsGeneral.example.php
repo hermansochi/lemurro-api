@@ -2,7 +2,7 @@
 /**
  * Основные параметры
  *
- * @version 12.12.2018
+ * @version 13.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -24,9 +24,4 @@ class SettingsGeneral
      * Это боевой сервер если стоит значение true
      */
     const APP_NAME = 'Lemurro';
-
-    /**
-     * Временная зона
-     */
-    const TIMEZONE = 'UTC';
 }
