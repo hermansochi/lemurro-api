@@ -2,13 +2,14 @@
 /**
  * Список справочника
  *
- * @version 12.12.2018
+ * @version 24.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
+use Lemurro\Api\Core\Helpers\Response;
 use ORM;
 
 /**
@@ -23,7 +24,7 @@ class ActionIndex extends Action
      *
      * @return array
      *
-     * @version 12.12.2018
+     * @version 24.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run()
@@ -34,21 +35,17 @@ class ActionIndex extends Action
             ->order_by_asc('name')
             ->find_array();
         if (is_array($items)) {
-            return [
-                'data' => [
+            return Response::data([
                     'js_class' => 'guideExample',
                     'count'    => count($items),
                     'items'    => $items,
-                ],
-            ];
+                ]);
         } else {
-            return [
-                'data' => [
+            return Response::data([
                     'js_class' => 'guideExample',
                     'count'    => 0,
                     'items'    => [],
-                ],
-            ];
+                ]);
         }
     }
 }

@@ -2,13 +2,14 @@
 /**
  * Получение элемента из справочника
  *
- * @version 28.10.2018
+ * @version 24.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
+use Lemurro\Api\Core\Helpers\Response;
 
 /**
  * Class ActionGet
@@ -24,7 +25,7 @@ class ActionGet extends Action
      *
      * @return array
      *
-     * @version 28.10.2018
+     * @version 24.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id)
@@ -32,19 +33,13 @@ class ActionGet extends Action
         $record = (new OneRecord($this->dic))->get($id);
 
         if (is_object($record)) {
-            return [
-                'data' => $record->as_array(),
-            ];
+            return Response::data($record->as_array());
         } else {
-            return [
-                'errors' => [
-                    [
-                        'status' => '404 Not Found',
-                        'code'   => 'info',
-                        'title'  => 'Запись не найдена',
-                    ],
-                ],
-            ];
+            return Response::error(
+                '404 Not Found',
+                'info',
+                'Запись не найдена'
+            );
         }
     }
 }

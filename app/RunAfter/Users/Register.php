@@ -2,13 +2,14 @@
 /**
  * После регистрации пользователя
  *
- * @version 19.04.2018
+ * @version 24.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\RunAfter\Users;
 
 use Lemurro\Api\Core\Abstracts\Action;
+use Lemurro\Api\Core\Helpers\Response;
 
 /**
  * Class Register
@@ -24,13 +25,11 @@ class Register extends Action
      *
      * @return array
      *
-     * @version 19.04.2018
+     * @version 24.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($data)
     {
-        return [
-            'data' => $data,
-        ];
+        return Response::data($data);
     }
 }

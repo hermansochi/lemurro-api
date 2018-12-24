@@ -2,13 +2,14 @@
 /**
  * Изменение элемента в справочнике
  *
- * @version 28.10.2018
+ * @version 24.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
+use Lemurro\Api\Core\Helpers\Response;
 
 /**
  * Class ActionSave
@@ -25,7 +26,7 @@ class ActionSave extends Action
      *
      * @return array
      *
-     * @version 28.10.2018
+     * @version 24.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id, $data)
@@ -39,30 +40,20 @@ class ActionSave extends Action
             if (is_object($record) && isset($record->id)) {
                 $this->dic['datachangelog']->insert('guide_example', 'update', $id, $data);
 
-                return [
-                    'data' => $data,
-                ];
+                return Response::data($data);
             } else {
-                return [
-                    'errors' => [
-                        [
-                            'status' => '500 Internal Server Error',
-                            'code'   => 'danger',
-                            'title'  => 'Произошла ошибка при изменении записи, попробуйте ещё раз',
-                        ],
-                    ],
-                ];
+                return Response::error(
+                    '500 Internal Server Error',
+                    'danger',
+                    'Произошла ошибка при изменении записи, попробуйте ещё раз'
+                );
             }
         } else {
-            return [
-                'errors' => [
-                    [
-                        'status' => '404 Not Found',
-                        'code'   => 'info',
-                        'title'  => 'Запись не найдена',
-                    ],
-                ],
-            ];
+            return Response::error(
+                '404 Not Found',
+                'info',
+                'Запись не найдена'
+            );
         }
     }
 }

@@ -2,13 +2,14 @@
 /**
  * Удаление элемента из справочника
  *
- * @version 28.10.2018
+ * @version 24.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
+use Lemurro\Api\Core\Helpers\Response;
 
 /**
  * Class ActionRemove
@@ -24,7 +25,7 @@ class ActionRemove extends Action
      *
      * @return array
      *
-     * @version 28.10.2018
+     * @version 24.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id)
@@ -38,32 +39,22 @@ class ActionRemove extends Action
             if (is_object($record) && isset($record->id)) {
                 $this->dic['datachangelog']->insert('guide_example', 'delete', $id);
 
-                return [
-                    'data' => [
-                        'id' => $record->id,
-                    ],
-                ];
+                return Response::data([
+                    'id' => $record->id,
+                ]);
             } else {
-                return [
-                    'errors' => [
-                        [
-                            'status' => '500 Internal Server Error',
-                            'code'   => 'danger',
-                            'title'  => 'Произошла ошибка при удалении записи, попробуйте ещё раз',
-                        ],
-                    ],
-                ];
+                return Response::error(
+                    '500 Internal Server Error',
+                    'danger',
+                    'Произошла ошибка при удалении записи, попробуйте ещё раз'
+                );
             }
         } else {
-            return [
-                'errors' => [
-                    [
-                        'status' => '404 Not Found',
-                        'code'   => 'info',
-                        'title'  => 'Запись не найдена',
-                    ],
-                ],
-            ];
+            return Response::error(
+                '404 Not Found',
+                'info',
+                'Запись не найдена'
+            );
         }
     }
 }
