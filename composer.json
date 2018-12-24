@@ -12,7 +12,7 @@
     }
   ],
   "config": {
-    "vendor-dir": "../lemurro-composer-vendors/api"
+    "vendor-dir": "../api-vendor"
   },
   "autoload": {
     "psr-4": {
