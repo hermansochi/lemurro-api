@@ -2,7 +2,7 @@
 /**
  * Получение элемента из справочника
  *
- * @version 24.12.2018
+ * @version 29.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -25,7 +25,7 @@ class ActionGet extends Action
      *
      * @return array
      *
-     * @version 24.12.2018
+     * @version 29.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id)
@@ -35,11 +35,7 @@ class ActionGet extends Action
         if (is_object($record)) {
             return Response::data($record->as_array());
         } else {
-            return Response::error(
-                '404 Not Found',
-                'info',
-                'Запись не найдена'
-            );
+            return Response::error404('Запись не найдена');
         }
     }
 }

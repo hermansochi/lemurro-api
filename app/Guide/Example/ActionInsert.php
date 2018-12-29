@@ -2,7 +2,7 @@
 /**
  * Добавление элемента в справочник
  *
- * @version 24.12.2018
+ * @version 29.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -26,7 +26,7 @@ class ActionInsert extends Action
      *
      * @return array
      *
-     * @version 24.12.2018
+     * @version 29.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($data)
@@ -42,11 +42,7 @@ class ActionInsert extends Action
 
             return Response::data($data);
         } else {
-            return Response::error(
-                '500 Internal Server Error',
-                'danger',
-                'Произошла ошибка при добавлении записи, попробуйте ещё раз'
-            );
+            return Response::error500('Произошла ошибка при добавлении записи, попробуйте ещё раз');
         }
     }
 }

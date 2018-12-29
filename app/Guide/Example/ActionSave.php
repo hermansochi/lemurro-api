@@ -2,7 +2,7 @@
 /**
  * Изменение элемента в справочнике
  *
- * @version 24.12.2018
+ * @version 29.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -26,7 +26,7 @@ class ActionSave extends Action
      *
      * @return array
      *
-     * @version 24.12.2018
+     * @version 29.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id, $data)
@@ -42,18 +42,10 @@ class ActionSave extends Action
 
                 return Response::data($data);
             } else {
-                return Response::error(
-                    '500 Internal Server Error',
-                    'danger',
-                    'Произошла ошибка при изменении записи, попробуйте ещё раз'
-                );
+                return Response::error500('Произошла ошибка при изменении записи, попробуйте ещё раз');
             }
         } else {
-            return Response::error(
-                '404 Not Found',
-                'info',
-                'Запись не найдена'
-            );
+            return Response::error404('Запись не найдена');
         }
     }
 }
