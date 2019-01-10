@@ -28,6 +28,37 @@ CREATE TABLE IF NOT EXISTS `data_change_logs` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_unicode_ci;
 
+-- Файлы
+CREATE TABLE IF NOT EXISTS `files` (
+  `id`             INT(11)      NOT NULL AUTO_INCREMENT,
+  `path`           VARCHAR(255) NOT NULL,
+  `name`           VARCHAR(255) NOT NULL,
+  `ext`            VARCHAR(255) NOT NULL,
+  `container_type` VARCHAR(255) NOT NULL,
+  `container_id`   VARCHAR(255) NULL,
+  `created_at`     DATETIME,
+  `deleted_at`     DATETIME,
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_unicode_ci;
+
+-- Токены скачивания файлов
+CREATE TABLE IF NOT EXISTS `files_downloads`
+(
+  `id`         INT(11)      NOT NULL AUTO_INCREMENT,
+  `path`       VARCHAR(255) NOT NULL,
+  `name`       VARCHAR(255) NOT NULL,
+  `token`      VARCHAR(255) NOT NULL,
+  `created_at` DATETIME,
+  PRIMARY KEY (`id`),
+  UNIQUE (`token`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_unicode_ci;
+
 -- История регистраций
 CREATE TABLE IF NOT EXISTS `history_registrations` (
   `id`                  BIGINT(22)   NOT NULL AUTO_INCREMENT,
@@ -113,6 +144,7 @@ SET
 CREATE TABLE IF NOT EXISTS `example` (
   `id`         INT(11)      NOT NULL AUTO_INCREMENT,
   `name`       VARCHAR(255) NULL,
+  `files`      TEXT,
   `created_at` DATETIME,
   `updated_at` DATETIME,
   `deleted_at` DATETIME,

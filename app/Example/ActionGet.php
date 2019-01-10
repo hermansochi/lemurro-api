@@ -2,13 +2,14 @@
 /**
  * Получение
  *
- * @version 29.12.2018
+ * @version 08.01.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
+use Lemurro\Api\Core\File\FileInfo;
 use Lemurro\Api\Core\Helpers\Response;
 
 /**
@@ -25,7 +26,7 @@ class ActionGet extends Action
      *
      * @return array
      *
-     * @version 29.12.2018
+     * @version 08.01.2019
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id)
@@ -33,7 +34,20 @@ class ActionGet extends Action
         $record = (new OneRecord($this->dic))->get($id);
 
         if (is_object($record)) {
-            return Response::data($record->as_array());
+            $data = $record->as_array();
+
+            if (!empty($data['files'])) {
+                $files_ids = explode(',', $data['files']);
+                $files_info = (new FileInfo($this->dic))->getMany($files_ids);
+
+                if (isset($files_info['errors'])) {
+                    $data['files'] = [];
+                } else {
+                    $data['files'] = $files_info['data'];
+                }
+            }
+
+            return Response::data($data);
         } else {
             return Response::error404('Запись не найдена');
         }
