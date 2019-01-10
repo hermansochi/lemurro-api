@@ -16,7 +16,7 @@ use Lemurro\Api\Core\File\FileOlderTokens;
 
 date_default_timezone_set('UTC');
 
-require '../api-vendor/autoload.php';
+require 'vendor/autoload.php';
 
 $jobby = Jobby::init();
 

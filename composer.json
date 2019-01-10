@@ -11,9 +11,6 @@
       "role": "Developer"
     }
   ],
-  "config": {
-    "vendor-dir": "../api-vendor"
-  },
   "autoload": {
     "psr-4": {
       "Lemurro\\Api\\App\\": "app/"

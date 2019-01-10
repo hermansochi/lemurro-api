@@ -4,4 +4,5 @@ app/Configs/SettingsGeneral.php
 app/Configs/SettingsPath.php
 logs/*.log
 upload
+vendor
 composer.lock
