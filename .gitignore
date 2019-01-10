@@ -2,4 +2,5 @@ app/Configs/SettingsDatabase.php
 app/Configs/SettingsGeneral.php
 app/Configs/SettingsPath.php
 logs/*.log
+upload
 composer.lock
