@@ -2,7 +2,7 @@ app/Configs/SettingsDatabase.php
 app/Configs/SettingsFile.php
 app/Configs/SettingsGeneral.php
 app/Configs/SettingsPath.php
-logs/*.log
+logs/**/*.log
 upload
 vendor
 composer.lock
