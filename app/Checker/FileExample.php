@@ -2,13 +2,13 @@
 /**
  * Проверка прав доступа к файлу для раздела Example
  *
- * @version 08.01.2019
+ * @version 28.03.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Checker;
 
-use Lemurro\Api\Core\File\FileChecker;
+use Lemurro\Api\Core\Helpers\File\FileChecker;
 
 /**
  * Class FileExample

@@ -2,14 +2,14 @@
 /**
  * Добавление
  *
- * @version 08.01.2019
+ * @version 28.03.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
-use Lemurro\Api\Core\File\FileManipulate;
+use Lemurro\Api\Core\Helpers\File\FileManipulate;
 use Lemurro\Api\Core\Helpers\Response;
 use ORM;
 
@@ -27,7 +27,7 @@ class ActionInsert extends Action
      *
      * @return array
      *
-     * @version 08.01.2019
+     * @version 28.03.2019
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($data)

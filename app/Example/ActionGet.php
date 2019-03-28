@@ -2,14 +2,14 @@
 /**
  * Получение
  *
- * @version 08.01.2019
+ * @version 28.03.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
-use Lemurro\Api\Core\File\FileInfo;
+use Lemurro\Api\Core\Helpers\File\FileInfo;
 use Lemurro\Api\Core\Helpers\Response;
 
 /**
@@ -26,7 +26,7 @@ class ActionGet extends Action
      *
      * @return array
      *
-     * @version 08.01.2019
+     * @version 28.03.2019
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id)
@@ -38,7 +38,7 @@ class ActionGet extends Action
 
             if (!empty($data['files'])) {
                 $files_ids = explode(',', $data['files']);
-                $files_info = (new FileInfo($this->dic))->getMany($files_ids);
+                $files_info = (new FileInfo())->getMany($files_ids);
 
                 if (isset($files_info['errors'])) {
                     $data['files'] = [];
