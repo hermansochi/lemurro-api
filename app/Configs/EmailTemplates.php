@@ -2,7 +2,7 @@
 /**
  * Шаблоны электронных писем
  *
- * @version 09.07.2018
+ * @version 10.04.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -31,7 +31,7 @@ class EmailTemplates
 <table border="0" cellpadding="0" cellspacing="0" style="width:100%;background:#eee;">
     <tr>
         <td style="padding:20px;">
-            <table border="0" cellpadding="10" cellspacing="0" align="center" style="width:600px;color:#444444;font-size:14px;font-family:arial,helvetica,sans-serif;line-height:1.5;border:5px #b28b6b solid;background:#fff;">
+            <table border="0" cellpadding="0" cellspacing="20" align="center" style="width:600px;color:#444444;font-size:14px;font-family:arial,helvetica,sans-serif;line-height:1.5;border:5px #b28b6b solid;background:#fff;">
                 <tbody>
                     <tr>
                         <td align="center"><img src="cid:logotype" style="max-height:60px;"></td>
