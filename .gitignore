@@ -1,7 +1,11 @@
+app/Configs/SettingsAuth.php
+app/Configs/SettingsCron.php
 app/Configs/SettingsDatabase.php
 app/Configs/SettingsFile.php
 app/Configs/SettingsGeneral.php
+app/Configs/SettingsMail.php
 app/Configs/SettingsPath.php
+app/Configs/SettingsSMS.php
 logs/**/*.log
 upload
 vendor
