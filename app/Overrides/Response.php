@@ -2,18 +2,18 @@
 /**
  * Изменение объекта Response перед запуском контроллера приложения
  *
- * @version 06.06.2018
+ * @version 19.04.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
-namespace Lemurro\Api\App;
+namespace Lemurro\Api\App\Overrides;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class Response
  *
- * @package Lemurro\Api\App
+ * @package Lemurro\Api\App\Overrides
  */
 class Response
 {
