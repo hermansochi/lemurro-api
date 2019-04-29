@@ -20,5 +20,5 @@ $jobby = (new Jobby())->init();
 try {
     $jobby->run();
 } catch (Exception $e) {
-    file_put_contents(SettingsCron::LOG_FILE, $e->getMessage());
+    file_put_contents(SettingsCron::LOG_FILE, $e->getMessage(), FILE_APPEND);
 }
