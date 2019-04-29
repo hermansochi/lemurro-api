@@ -4,14 +4,12 @@
  *
  * Добавить в crontab: * * * * * /path/to/php /path/to/lemurro-cron.php > /dev/null
  *
- * @version 29.03.2019
+ * @version 29.04.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 use Lemurro\Api\App\Configs\SettingsCron;
 use Lemurro\Api\Core\Cron\Jobby;
-
-date_default_timezone_set('UTC');
 
 require 'vendor/autoload.php';
 
