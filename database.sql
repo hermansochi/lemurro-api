@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `files`
 CREATE TABLE IF NOT EXISTS `files_downloads`
 (
     `id`         INT(11)      NOT NULL AUTO_INCREMENT,
+    `type`       VARCHAR(255) NOT NULL,
     `path`       VARCHAR(255) NOT NULL,
     `name`       VARCHAR(255) NOT NULL,
     `token`      VARCHAR(255) NOT NULL,
