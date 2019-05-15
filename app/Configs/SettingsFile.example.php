@@ -2,7 +2,7 @@
 /**
  * Параметры загрузки файлов
  *
- * @version 08.01.2019
+ * @version 15.05.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -72,6 +72,13 @@ class SettingsFile
      * @var string
      */
     const MAX_SIZE_FORMATED = '2 MB';
+
+    /**
+     * Режим проверки файла: по типу содержимого (type) или по расширению (ext)
+     *
+     * @var string
+     */
+    const CHECK_FILE_BY = 'type';
 
     /**
      * Массив разрешенных типов
