@@ -100,6 +100,7 @@ CREATE TABLE IF NOT EXISTS `users`
 (
     `id`         INT(11)      NOT NULL AUTO_INCREMENT,
     `auth_id`    VARCHAR(255) NULL,
+    `locked`     TINYINT(1)   NOT NULL DEFAULT '0',
     `created_at` DATETIME,
     PRIMARY KEY (`id`)
 )
