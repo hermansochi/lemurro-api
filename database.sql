@@ -140,6 +140,21 @@ SET `id`          = 1,
     `last_name`   = 'Пользователь',
     `created_at`  = '2019-04-30 00:00:00';
 
+-- Наборы прав доступа
+CREATE TABLE IF NOT EXISTS `access_sets`
+(
+    `id`         INT(11)      NOT NULL AUTO_INCREMENT,
+    `name`       VARCHAR(255) NOT NULL,
+    `roles`      TEXT,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    `deleted_at` DATETIME,
+    PRIMARY KEY (`id`)
+)
+    ENGINE = InnoDB
+    DEFAULT CHARSET = utf8
+    COLLATE = utf8_unicode_ci;
+
 -- Пример справочника
 CREATE TABLE IF NOT EXISTS `guide_example`
 (
