@@ -2,13 +2,14 @@
 /**
  * Добавление
  *
- * @version 28.03.2019
+ * @version 06.06.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
+use Lemurro\Api\Core\Helpers\File\FileAdd;
 use Lemurro\Api\Core\Helpers\File\FileManipulate;
 use Lemurro\Api\Core\Helpers\Response;
 use ORM;
@@ -27,7 +28,7 @@ class ActionInsert extends Action
      *
      * @return array
      *
-     * @version 28.03.2019
+     * @version 06.06.2019
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($data)
@@ -53,6 +54,10 @@ class ActionInsert extends Action
                     $record->files = (empty($manipulate['ids']) ? null : implode(',', $manipulate['ids']));
                     $record->save();
                     if (!is_object($record)) {
+                        /* @var FileAdd $class_file_add */
+                        $class_file_add = $manipulate['class_file_add'];
+                        $class_file_add->undo();
+
                         return Response::error500('Произошла ошибка при сохранении файлов, попробуйте ещё раз');
                     }
                 }
