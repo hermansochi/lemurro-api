@@ -42,4 +42,9 @@ class SettingsCron
      * Выполнять (true) или нет (false) cron-задачу: Очистка устаревших файлов во временном каталоге
      */
     const FILE_OLDER_FILES_ENABLED = true;
+
+    /**
+     * Выполнять (true) или нет (false) cron-задачу: Ротация таблицы data_change_logs
+     */
+    const DATA_CHANGE_LOGS_ROTATOR_ENABLED = true;
 }

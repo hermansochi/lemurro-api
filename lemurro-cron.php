@@ -4,7 +4,9 @@
  *
  * Добавить в crontab: * * * * * /path/to/php /path/to/lemurro-cron.php > /dev/null
  *
- * @version 29.04.2019
+ * Минуты Часы Дни Месяцы ДниНедели
+ *
+ * @version 23.08.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
