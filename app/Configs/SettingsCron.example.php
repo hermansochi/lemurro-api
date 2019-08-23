@@ -2,7 +2,7 @@
 /**
  * Параметры cron-задач
  *
- * @version 15.04.2019
+ * @version 23.08.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -32,4 +32,14 @@ class SettingsCron
      * Массив email-адресов, куда отправлять письма с ошибками
      */
     const ERRORS_EMAILS = [];
+
+    /**
+     * Выполнять (true) или нет (false) cron-задачу: Очистка устаревших токенов для скачивания файлов
+     */
+    const FILE_OLDER_TOKENS_ENABLED = true;
+
+    /**
+     * Выполнять (true) или нет (false) cron-задачу: Очистка устаревших файлов во временном каталоге
+     */
+    const FILE_OLDER_FILES_ENABLED = true;
 }
