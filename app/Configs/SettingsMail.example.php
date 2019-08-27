@@ -2,7 +2,7 @@
 /**
  * Параметры email
  *
- * @version 16.07.2019
+ * @version 27.08.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
@@ -15,12 +15,12 @@ namespace Lemurro\Api\App\Configs;
  */
 class SettingsMail
 {
+    // ОСНОВНОЙ КАНАЛ
+
     /**
-     * Почта проекта
+     * Почтовый адрес
      */
     const APP_EMAIL = 'no-reply@domain.tld';
-
-    // ОСНОВНОЙ КАНАЛ
 
     /**
      * Отправка через SMTP с авторизацией
@@ -58,6 +58,11 @@ class SettingsMail
      * Отправка через SMTP с авторизацией
      */
     const RESERVE = false;
+
+    /**
+     * Почтовый адрес
+     */
+    const RESERVE_APP_EMAIL = 'no-reply@domain.tld';
 
     /**
      * Тип протокола (ssl|tls)
