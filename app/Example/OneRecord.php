@@ -2,8 +2,8 @@
 /**
  * Получим одну запись по ИД
  *
- * @version 28.10.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * @version 15.10.2019
  */
 
 namespace Lemurro\Api\App\Example;
@@ -23,15 +23,21 @@ class OneRecord extends Action
      *
      * @param integer $id ИД записи
      *
-     * @return ORM
+     * @return ORM|false
      *
-     * @version 28.10.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     * @version 15.10.2019
      */
     public function get($id)
     {
-        return ORM::for_table('example')
+        $record = ORM::for_table('example')
             ->where_null('deleted_at')
             ->find_one($id);
+
+        if (!is_object($record) || $record->id != $id) {
+            return false;
+        }
+
+        return $record;
     }
 }
