@@ -2,8 +2,8 @@
 /**
  * Параметры аутентификации
  *
- * @version 12.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * @version 24.10.2019
  */
 
 namespace Lemurro\Api\App\Configs;
@@ -19,6 +19,7 @@ class SettingsAuth
      * Вид аутентификации
      *   email: по электронной почте (код через email)
      *   phone: по номеру телефона (код через смс)
+     *   mixed: смешанная аутентификация (в поле auth_id может быть email или номер телефона)
      */
     const TYPE = 'email';
 
