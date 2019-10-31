@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `info_users`
 (
     `id`          INT(11)      NOT NULL AUTO_INCREMENT,
     `user_id`     INT(11)      NOT NULL,
-    `roles`       TEXT,
+    `roles`       JSON         NULL,
     `first_name`  VARCHAR(255) NULL,
     `second_name` VARCHAR(255) NULL,
     `last_name`   VARCHAR(255) NULL,
@@ -160,7 +160,9 @@ CREATE TABLE IF NOT EXISTS `info_users`
 INSERT INTO `info_users`
 SET `id`          = 1,
     `user_id`     = 1,
-    `roles`       = '{"admin":"true"}',
+    `roles`       = '{
+      "admin": "true"
+    }',
     `first_name`  = 'для',
     `second_name` = 'cli-скриптов',
     `last_name`   = 'Пользователь',
