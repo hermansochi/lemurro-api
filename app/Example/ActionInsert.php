@@ -2,8 +2,8 @@
 /**
  * Добавление
  *
- * @version 06.06.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * @version 19.11.2019
  */
 
 namespace Lemurro\Api\App\Example;
@@ -28,17 +28,17 @@ class ActionInsert extends Action
      *
      * @return array
      *
-     * @version 06.06.2019
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     * @version 19.11.2019
      */
     public function run($data)
     {
         $record = ORM::for_table('example')->create();
         $record->name = $data['name'];
-        $record->created_at = $this->dic['datetimenow'];
+        $record->created_at = $this->date_time_now;
         $record->save();
         if (is_object($record) && isset($record->id)) {
-            $this->dic['datachangelog']->insert('example', 'insert', $record->id, $data);
+            $this->data_change_log->insert('example', 'insert', $record->id, $data);
 
             if (isset($data['files']) && is_array($data['files'])) {
                 $container_type = 'example';

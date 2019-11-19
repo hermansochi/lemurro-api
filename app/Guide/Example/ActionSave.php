@@ -2,8 +2,8 @@
 /**
  * Изменение элемента в справочнике
  *
- * @version 29.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * @version 19.11.2019
  */
 
 namespace Lemurro\Api\App\Guide\Example;
@@ -26,8 +26,8 @@ class ActionSave extends Action
      *
      * @return array
      *
-     * @version 29.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     * @version 19.11.2019
      */
     public function run($id, $data)
     {
@@ -35,10 +35,10 @@ class ActionSave extends Action
 
         if (is_object($record)) {
             $record->name = $data['name'];
-            $record->updated_at = $this->dic['datetimenow'];
+            $record->updated_at = $this->date_time_now;
             $record->save();
             if (is_object($record) && isset($record->id)) {
-                $this->dic['datachangelog']->insert('guide_example', 'update', $id, $data);
+                $this->data_change_log->insert('guide_example', 'update', $id, $data);
 
                 return Response::data($data);
             } else {
