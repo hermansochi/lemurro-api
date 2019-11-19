@@ -191,6 +191,8 @@ CREATE TABLE IF NOT EXISTS `users`
     `auth_id`    VARCHAR(255) NULL,
     `locked`     TINYINT(1)   NOT NULL DEFAULT '0',
     `created_at` DATETIME     NULL,
+    `updated_at` DATETIME     NULL,
+    `deleted_at` DATETIME     NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
