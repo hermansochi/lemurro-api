@@ -2,8 +2,8 @@
 /**
  * Основные параметры
  *
- * @version 13.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * @version 21.11.2019
  */
 
 namespace Lemurro\Api\App\Configs;
@@ -17,11 +17,15 @@ class SettingsGeneral
 {
     /**
      * Это боевой сервер если стоит значение true
+     *
+     * @var boolean
      */
     const PRODUCTION = false;
 
     /**
-     * Это боевой сервер если стоит значение true
+     * Имя проекта
+     *
+     * @var string
      */
     const APP_NAME = 'Lemurro';
 }

@@ -3,7 +3,7 @@
  * Параметры аутентификации
  *
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
- * @version 24.10.2019
+ * @version 21.11.2019
  */
 
 namespace Lemurro\Api\App\Configs;
@@ -20,26 +20,36 @@ class SettingsAuth
      *   email: по электронной почте (код через email)
      *   phone: по номеру телефона (код через смс)
      *   mixed: смешанная аутентификация (в поле auth_id может быть email или номер телефона)
+     *
+     * @var string
      */
     const TYPE = 'email';
 
     /**
      * Можно ли регистрировать новых пользователей (если при получении кода окажется что такого пользователя нет он будет создан)
+     *
+     * @var boolean
      */
     const CAN_REGISTRATION_USERS = true;
 
     /**
      * Время устаревания кодов аутентификации (в часах)
+     *
+     * @var integer
      */
     const AUTH_CODES_OLDER_THAN = 2;
 
     /**
      * Время устаревания сессий (в днях), сессии которыми не пользовались
+     *
+     * @var integer
      */
     const SESSIONS_OLDER_THAN = 30;
 
     /**
      * Привязка сессии к IP-адресу
+     *
+     * @var boolean
      */
     const SESSIONS_BINDING_TO_IP = false;
 }

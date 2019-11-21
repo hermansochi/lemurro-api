@@ -2,8 +2,8 @@
 /**
  * Параметры загрузки файлов
  *
- * @version 15.05.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * @version 15.05.2019
  */
 
 namespace Lemurro\Api\App\Configs;
