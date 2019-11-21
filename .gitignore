@@ -4,6 +4,7 @@ app/Configs/SettingsDatabase.php
 app/Configs/SettingsFile.php
 app/Configs/SettingsGeneral.php
 app/Configs/SettingsMail.php
+app/Configs/SettingsMaintenance.php
 app/Configs/SettingsPath.php
 app/Configs/SettingsSMS.php
 logs/**/*.log
