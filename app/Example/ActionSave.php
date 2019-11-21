@@ -2,8 +2,8 @@
 /**
  * Изменение
  *
+ * @version 06.06.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
- * @version 19.11.2019
  */
 
 namespace Lemurro\Api\App\Example;
@@ -28,8 +28,8 @@ class ActionSave extends Action
      *
      * @return array
      *
+     * @version 06.06.2019
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
-     * @version 19.11.2019
      */
     public function run($id, $data)
     {
@@ -37,10 +37,10 @@ class ActionSave extends Action
 
         if (is_object($record)) {
             $record->name = $data['name'];
-            $record->updated_at = $this->date_time_now;
+            $record->updated_at = $this->dic['datetimenow'];
             $record->save();
             if (is_object($record) && isset($record->id)) {
-                $this->data_change_log->insert('example', 'update', $record->id, $data);
+                $this->dic['datachangelog']->insert('example', 'update', $record->id, $data);
 
                 if (isset($data['files']) && is_array($data['files'])) {
                     $container_type = 'example';

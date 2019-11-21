@@ -2,8 +2,8 @@
 /**
  * Добавление элемента в справочник
  *
+ * @version 29.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
- * @version 19.11.2019
  */
 
 namespace Lemurro\Api\App\Guide\Example;
@@ -26,19 +26,19 @@ class ActionInsert extends Action
      *
      * @return array
      *
+     * @version 29.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
-     * @version 19.11.2019
      */
     public function run($data)
     {
         $record = ORM::for_table('guide_example')->create();
         $record->name = $data['name'];
-        $record->created_at = $this->date_time_now;
+        $record->created_at = $this->dic['datetimenow'];
         $record->save();
         if (is_object($record) && isset($record->id)) {
             $data['id'] = $record->id;
 
-            $this->data_change_log->insert('guide_example', 'insert', $record->id, $data);
+            $this->dic['datachangelog']->insert('guide_example', 'insert', $record->id, $data);
 
             return Response::data($data);
         } else {
