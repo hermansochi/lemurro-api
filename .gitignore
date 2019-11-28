@@ -7,6 +7,7 @@ app/Configs/SettingsMail.php
 app/Configs/SettingsMaintenance.php
 app/Configs/SettingsPath.php
 app/Configs/SettingsSMS.php
+http/http-client.env.json
 logs/**/*.log
 upload
 vendor

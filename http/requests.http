@@ -1,0 +1,7 @@
+GET {{host}}user
+Accept: */*
+Cache-Control: no-cache
+X-SESSION-ID: {{session_id}}
+X-UTC-OFFSET: {{utc_offset}}
+
+###
