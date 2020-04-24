@@ -171,12 +171,15 @@ SET `id`          = 1,
 -- Сессии пользователей
 CREATE TABLE IF NOT EXISTS `sessions`
 (
-    `id`         BIGINT(22)   NOT NULL AUTO_INCREMENT,
-    `session`    VARCHAR(255) NOT NULL,
-    `ip`         VARCHAR(255),
-    `user_id`    INT(11)      NOT NULL,
-    `created_at` DATETIME,
-    `checked_at` DATETIME,
+    `id`            BIGINT(22)   NOT NULL AUTO_INCREMENT,
+    `session`       VARCHAR(255) NOT NULL,
+    `ip`            VARCHAR(255),
+    `user_id`       INT(11)      NOT NULL,
+    `device_info`   JSON,
+    `geoip`         JSON,
+    `admin_entered` TINYINT(1)   NOT NULL DEFAULT '0',
+    `created_at`    DATETIME,
+    `checked_at`    DATETIME,
     PRIMARY KEY (`id`),
     UNIQUE KEY (`session`)
 )
