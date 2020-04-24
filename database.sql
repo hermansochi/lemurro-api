@@ -4,9 +4,9 @@ CREATE TABLE IF NOT EXISTS `access_sets`
     `id`         INT(11)      NOT NULL AUTO_INCREMENT,
     `name`       VARCHAR(255) NOT NULL,
     `roles`      TEXT,
-    `created_at` DATETIME     NULL,
-    `updated_at` DATETIME     NULL,
-    `deleted_at` DATETIME     NULL,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    `deleted_at` DATETIME,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `auth_codes`
     `code`       VARCHAR(255) NOT NULL,
     `user_id`    INT(11)      NOT NULL,
     `attempts`   TINYINT(3)   NOT NULL DEFAULT '0',
-    `created_at` DATETIME     NULL,
+    `created_at` DATETIME,
     PRIMARY KEY (`id`),
     UNIQUE KEY (`auth_id`)
 )
@@ -36,9 +36,9 @@ CREATE TABLE IF NOT EXISTS `data_change_logs`
     `user_id`     INT(11)      NOT NULL,
     `table_name`  VARCHAR(255) NOT NULL,
     `action_name` VARCHAR(255) NOT NULL,
-    `record_id`   INT(11)      NULL,
+    `record_id`   INT(11),
     `data`        LONGTEXT,
-    `created_at`  DATETIME     NULL,
+    `created_at`  DATETIME,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -48,12 +48,12 @@ CREATE TABLE IF NOT EXISTS `data_change_logs`
 -- Пример раздела
 CREATE TABLE IF NOT EXISTS `example`
 (
-    `id`         INT(11)      NOT NULL AUTO_INCREMENT,
-    `name`       VARCHAR(255) NULL,
+    `id`         INT(11) NOT NULL AUTO_INCREMENT,
+    `name`       VARCHAR(255),
     `files`      TEXT,
-    `created_at` DATETIME     NULL,
-    `updated_at` DATETIME     NULL,
-    `deleted_at` DATETIME     NULL,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    `deleted_at` DATETIME,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -76,9 +76,9 @@ CREATE TABLE IF NOT EXISTS `files`
     `name`           VARCHAR(255) NOT NULL,
     `ext`            VARCHAR(255) NOT NULL,
     `container_type` VARCHAR(255) NOT NULL,
-    `container_id`   VARCHAR(255) NULL,
-    `created_at`     DATETIME     NULL,
-    `deleted_at`     DATETIME     NULL,
+    `container_id`   VARCHAR(255),
+    `created_at`     DATETIME,
+    `deleted_at`     DATETIME,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `files_downloads`
     `path`       VARCHAR(255) NOT NULL,
     `name`       VARCHAR(255) NOT NULL,
     `token`      VARCHAR(255) NOT NULL,
-    `created_at` DATETIME     NULL,
+    `created_at` DATETIME,
     PRIMARY KEY (`id`),
     UNIQUE (`token`)
 )
@@ -104,11 +104,11 @@ CREATE TABLE IF NOT EXISTS `files_downloads`
 -- Пример справочника
 CREATE TABLE IF NOT EXISTS `guide_example`
 (
-    `id`         INT(11)      NOT NULL AUTO_INCREMENT,
-    `name`       VARCHAR(255) NULL,
-    `created_at` DATETIME     NULL,
-    `updated_at` DATETIME     NULL,
-    `deleted_at` DATETIME     NULL,
+    `id`         INT(11) NOT NULL AUTO_INCREMENT,
+    `name`       VARCHAR(255),
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    `deleted_at` DATETIME,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -126,13 +126,13 @@ SET `name`       = 'Пример справочника №2',
 -- История регистраций
 CREATE TABLE IF NOT EXISTS `history_registrations`
 (
-    `id`                  BIGINT(22)   NOT NULL AUTO_INCREMENT,
-    `device_uuid`         VARCHAR(255) NULL,
-    `device_platform`     VARCHAR(255) NULL,
-    `device_version`      VARCHAR(255) NULL,
-    `device_manufacturer` VARCHAR(255) NULL,
-    `device_model`        VARCHAR(255) NULL,
-    `created_at`          DATETIME     NULL,
+    `id`                  BIGINT(22) NOT NULL AUTO_INCREMENT,
+    `device_uuid`         VARCHAR(255),
+    `device_platform`     VARCHAR(255),
+    `device_version`      VARCHAR(255),
+    `device_manufacturer` VARCHAR(255),
+    `device_model`        VARCHAR(255),
+    `created_at`          DATETIME,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -142,15 +142,15 @@ CREATE TABLE IF NOT EXISTS `history_registrations`
 -- Информация о пользователях (добавляйте любые дополнительные поля)
 CREATE TABLE IF NOT EXISTS `info_users`
 (
-    `id`          INT(11)      NOT NULL AUTO_INCREMENT,
-    `user_id`     INT(11)      NOT NULL,
-    `roles`       JSON         NULL,
-    `first_name`  VARCHAR(255) NULL,
-    `second_name` VARCHAR(255) NULL,
-    `last_name`   VARCHAR(255) NULL,
-    `created_at`  DATETIME     NULL,
-    `updated_at`  DATETIME     NULL,
-    `deleted_at`  DATETIME     NULL,
+    `id`          INT(11) NOT NULL AUTO_INCREMENT,
+    `user_id`     INT(11) NOT NULL,
+    `roles`       JSON,
+    `first_name`  VARCHAR(255),
+    `second_name` VARCHAR(255),
+    `last_name`   VARCHAR(255),
+    `created_at`  DATETIME,
+    `updated_at`  DATETIME,
+    `deleted_at`  DATETIME,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -173,10 +173,10 @@ CREATE TABLE IF NOT EXISTS `sessions`
 (
     `id`         BIGINT(22)   NOT NULL AUTO_INCREMENT,
     `session`    VARCHAR(255) NOT NULL,
-    `ip`         VARCHAR(255) NULL,
+    `ip`         VARCHAR(255),
     `user_id`    INT(11)      NOT NULL,
-    `created_at` DATETIME     NULL,
-    `checked_at` DATETIME     NULL,
+    `created_at` DATETIME,
+    `checked_at` DATETIME,
     PRIMARY KEY (`id`),
     UNIQUE KEY (`session`)
 )
@@ -187,12 +187,12 @@ CREATE TABLE IF NOT EXISTS `sessions`
 -- Пользователи
 CREATE TABLE IF NOT EXISTS `users`
 (
-    `id`         INT(11)      NOT NULL AUTO_INCREMENT,
-    `auth_id`    VARCHAR(255) NULL,
-    `locked`     TINYINT(1)   NOT NULL DEFAULT '0',
-    `created_at` DATETIME     NULL,
-    `updated_at` DATETIME     NULL,
-    `deleted_at` DATETIME     NULL,
+    `id`         INT(11)    NOT NULL AUTO_INCREMENT,
+    `auth_id`    VARCHAR(255),
+    `locked`     TINYINT(1) NOT NULL DEFAULT '0',
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    `deleted_at` DATETIME,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
