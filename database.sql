@@ -21,6 +21,14 @@ CREATE TABLE IF NOT EXISTS `auth_codes` (
     UNIQUE KEY (`auth_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
+-- Дата последнего запроса кода аутентификации
+CREATE TABLE IF NOT EXISTS `auth_codes_lasts` (
+    `id` BIGINT(22) NOT NULL AUTO_INCREMENT,
+    `user_id` INT(11) NOT NULL,
+    `created_at` DATETIME NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
+
 -- Лог действий пользователей
 CREATE TABLE IF NOT EXISTS `data_change_logs` (
     `id` BIGINT(22) NOT NULL AUTO_INCREMENT,
