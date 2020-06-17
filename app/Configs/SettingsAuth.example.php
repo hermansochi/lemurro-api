@@ -5,7 +5,7 @@
  *
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  *
- * @version 10.06.2020
+ * @version 17.06.2020
  */
 
 namespace Lemurro\Api\App\Configs;
@@ -33,20 +33,6 @@ class SettingsAuth
      * @var boolean
      */
     const CAN_REGISTRATION_USERS = true;
-
-    /**
-     * Количество генераций новых кодов в минуту
-     *
-     * @var int
-     */
-    const ATTEMPTS_PER_MINUTE = 1;
-
-    /**
-     * Количество генераций новых кодов в час
-     *
-     * @var int
-     */
-    const ATTEMPTS_PER_HOUR = 5;
 
     /**
      * Количество генераций новых кодов в день
