@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Получение
  *
- * @version 28.03.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ *
+ * @version 19.06.2020
  */
 
 namespace Lemurro\Api\App\Example;
@@ -26,8 +28,9 @@ class ActionGet extends Action
      *
      * @return array
      *
-     * @version 28.03.2019
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     *
+     * @version 19.06.2020
      */
     public function run($id)
     {
@@ -40,7 +43,7 @@ class ActionGet extends Action
                 $files_ids = explode(',', $data['files']);
                 $files_info = (new FileInfo())->getMany($files_ids);
 
-                if (isset($files_info['errors'])) {
+                if (!$files_info['success']) {
                     $data['files'] = [];
                 } else {
                     $data['files'] = $files_info['data'];
