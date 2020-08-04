@@ -5,7 +5,7 @@
  *
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  *
- * @version 17.06.2020
+ * @version 04.08.2020
  */
 
 namespace Lemurro\Api\App\Configs;
@@ -32,7 +32,7 @@ class SettingsAuth
      *
      * @var boolean
      */
-    const CAN_REGISTRATION_USERS = true;
+    const CAN_REGISTRATION_USERS = false;
 
     /**
      * Количество генераций новых кодов в день
