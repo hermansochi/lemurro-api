@@ -2,7 +2,7 @@
 /**
  * Запуск cron-задач
  *
- * Добавить в crontab: * * * * * /path/to/php /path/to/lemurro-cron.php > /dev/null
+ * Добавить в crontab: * * * * * /path/to/php /path/to/cron.php > /dev/null
  *
  * Минуты Часы Дни Месяцы ДниНедели
  *
