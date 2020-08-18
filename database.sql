@@ -120,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `info_users` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `user_id` INT(11) NOT NULL,
     `roles` JSON,
+    `email` VARCHAR(255),
     `first_name` VARCHAR(255),
     `second_name` VARCHAR(255),
     `last_name` VARCHAR(255),
@@ -135,6 +136,7 @@ SET `id` = 1,
     `roles` = '{
       "admin": "true"
     }',
+    `email` = 'lemurro@lemurro',
     `first_name` = 'для',
     `second_name` = 'cli-скриптов',
     `last_name` = 'Пользователь',
