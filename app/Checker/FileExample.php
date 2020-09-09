@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Проверка прав доступа к файлу для раздела Example
  *
- * @version 28.03.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ *
+ * @version 09.09.2020
  */
 
 namespace Lemurro\Api\App\Checker;
@@ -11,8 +13,6 @@ namespace Lemurro\Api\App\Checker;
 use Lemurro\Api\Core\Helpers\File\FileChecker;
 
 /**
- * Class FileExample
- *
  * @package Lemurro\Api\App\Checker
  */
 class FileExample extends FileChecker
@@ -24,7 +24,6 @@ class FileExample extends FileChecker
      *
      * @return boolean
      *
-     * @version 08.01.2019
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function check($container_id)
@@ -35,7 +34,7 @@ class FileExample extends FileChecker
                 'access' => 'read',
             ],
         ];
-        $checker_result = $this->dic['checker']->run($checker_checks);
+        $checker_result = $this->checker->run($checker_checks);
         if (is_array($checker_result) && count($checker_result) == 0) {
             return true;
         } else {
