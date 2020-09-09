@@ -1,35 +1,31 @@
 <?php
+
 /**
- * Изменение
- *
- * @version 06.06.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ *
+ * @version 09.09.2020
  */
 
 namespace Lemurro\Api\App\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
-use Lemurro\Api\Core\Helpers\File\FileAdd;
 use Lemurro\Api\Core\Helpers\File\FileManipulate;
 use Lemurro\Api\Core\Helpers\Response;
 
 /**
- * Class ActionSave
- *
  * @package Lemurro\Api\App\Example
  */
 class ActionSave extends Action
 {
     /**
-     * Выполним действие
-     *
      * @param integer $id   ИД записи
      * @param array   $data Массив данных
      *
      * @return array
      *
-     * @version 06.06.2019
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     *
+     * @version 09.09.2020
      */
     public function run($id, $data)
     {
@@ -37,7 +33,7 @@ class ActionSave extends Action
 
         if (is_object($record)) {
             $record->name = $data['name'];
-            $record->updated_at = $this->dic['datetimenow'];
+            $record->updated_at = $this->datetimenow;
             $record->save();
             if (is_object($record) && isset($record->id)) {
                 $this->dic['datachangelog']->insert('example', 'update', $record->id, $data);
