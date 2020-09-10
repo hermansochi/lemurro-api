@@ -3,12 +3,13 @@
 /**
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  *
- * @version 09.09.2020
+ * @version 10.09.2020
  */
 
 namespace Lemurro\Api\App\Example;
 
 use Lemurro\Api\Core\Abstracts\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @package Lemurro\Api\App\Example
@@ -18,9 +19,9 @@ class ControllerSave extends Controller
     /**
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      *
-     * @version 09.09.2020
+     * @version 10.09.2020
      */
-    public function start()
+    public function start(): Response
     {
         $checker_checks = [
             'auth' => '',
@@ -41,6 +42,6 @@ class ControllerSave extends Controller
             $this->response->setData($checker_result);
         }
 
-        $this->response->send();
+        return $this->response;
     }
 }
