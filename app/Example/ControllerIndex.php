@@ -23,19 +23,15 @@ class ControllerIndex extends Controller
      */
     public function start(): Response
     {
-        $checker_checks = [
+        $this->checker->run([
             'auth' => '',
             'role' => [
                 'page'   => 'example',
                 'access' => 'read',
             ],
-        ];
-        $checker_result = $this->checker->run($checker_checks);
-        if (is_array($checker_result) && count($checker_result) == 0) {
-            $this->response->setData((new ActionIndex($this->dic))->run());
-        } else {
-            $this->response->setData($checker_result);
-        }
+        ]);
+
+        $this->response->setData((new ActionIndex($this->dic))->run());
 
         return $this->response;
     }
