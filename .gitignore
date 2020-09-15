@@ -1,3 +1,4 @@
+.vscode
 app/Configs/SettingsAuth.php
 app/Configs/SettingsCron.php
 app/Configs/SettingsDatabase.php
