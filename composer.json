@@ -16,6 +16,9 @@
       "Lemurro\\Api\\App\\": "app/"
     }
   },
+  "scripts": {
+    "phpcs": "phpcs -nsp ./app --runtime-set testVersion 7.4 --standard=PHPCompatibility --standard=PSR1 --standard=PSR12 --runtime-set installed_paths ./vendor/phpcompatibility/php-compatibility/PHPCompatibility --report=xml --report-file=./phpcs-report.xml"
+  },
   "config": {
     "sort-packages": true
   },
@@ -24,6 +27,7 @@
     "php": ">=7.4.0"
   },
   "require-dev": {
+    "phpcompatibility/php-compatibility": "^9.3",
     "symfony/var-dumper": "5.1.*"
   }
 }
