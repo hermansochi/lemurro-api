@@ -4,17 +4,18 @@
  * Параметры справочников
  *
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
- * @version 21.11.2019
+ *
+ * @version 25.09.2020
  */
 
 namespace Lemurro\Api\App\Configs;
 
+use Lemurro\Api\Core\Abstracts\AbstractSettingsGuides;
+
 /**
- * Class SettingsGuides
- *
  * @package Lemurro\Api\App\Configs
  */
-class SettingsGuides
+class SettingsGuides extends AbstractSettingsGuides
 {
     /**
      * Связка конечных точек маршрута справочников и их namespaces для запуска
@@ -22,10 +23,8 @@ class SettingsGuides
      * Пример:
      *   конечная точка: example (используется в пути: /guide/example)
      *        namespace: Example (полный путь до каталога классов: /app/Guide/Example/)
-     *
-     * @var array
      */
-    const CLASSES = [
+    public static array $classes = [
         'example' => 'Example',
     ];
 }

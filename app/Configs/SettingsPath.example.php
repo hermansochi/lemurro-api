@@ -4,29 +4,17 @@
  * Настройка путей
  *
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
- * @version 21.11.2019
+ *
+ * @version 25.09.2020
  */
 
 namespace Lemurro\Api\App\Configs;
 
+use Lemurro\Api\Core\Abstracts\AbstractSettingsPath;
+
 /**
- * Class SettingsPath
- *
  * @package Lemurro\Api\App\Configs
  */
-class SettingsPath
+class SettingsPath extends AbstractSettingsPath
 {
-    /**
-     * Полный путь до корня (с конечной "/")
-     *
-     * @var string
-     */
-    const FULL_ROOT = __DIR__ . '/../../';
-
-    /**
-     * Полный путь до каталога логов (с конечной "/")
-     *
-     * @var string
-     */
-    const LOGS = __DIR__ . '/../../logs/';
 }

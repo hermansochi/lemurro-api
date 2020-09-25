@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Запуск cron-задач
  *
@@ -6,8 +7,9 @@
  *
  * Минуты Часы Дни Месяцы ДниНедели
  *
- * @version 23.08.2019
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ *
+ * @version 25.09.2020
  */
 
 use Lemurro\Api\App\Configs\SettingsCron;
@@ -22,5 +24,5 @@ $jobby = (new Jobby())->init();
 try {
     $jobby->run();
 } catch (Exception $e) {
-    file_put_contents(SettingsCron::LOG_FILE, $e->getMessage(), FILE_APPEND);
+    file_put_contents(SettingsCron::$log_file, $e->getMessage(), FILE_APPEND);
 }

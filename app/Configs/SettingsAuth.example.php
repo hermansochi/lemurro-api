@@ -5,60 +5,16 @@
  *
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  *
- * @version 04.08.2020
+ * @version 25.09.2020
  */
 
 namespace Lemurro\Api\App\Configs;
 
+use Lemurro\Api\Core\Abstracts\AbstractSettingsAuth;
+
 /**
- * Class SettingsAuth
- *
  * @package Lemurro\Api\App\Configs
  */
-class SettingsAuth
+class SettingsAuth extends AbstractSettingsAuth
 {
-    /**
-     * Вид аутентификации
-     *   email: по электронной почте (код через email)
-     *   phone: по номеру телефона (код через смс)
-     *   mixed: смешанная аутентификация (в поле auth_id может быть email или номер телефона)
-     *
-     * @var string
-     */
-    const TYPE = 'email';
-
-    /**
-     * Можно ли регистрировать новых пользователей (если при получении кода окажется что такого пользователя нет он будет создан)
-     *
-     * @var boolean
-     */
-    const CAN_REGISTRATION_USERS = false;
-
-    /**
-     * Количество генераций новых кодов в день
-     *
-     * @var int
-     */
-    const ATTEMPTS_PER_DAY = 50;
-
-    /**
-     * Время устаревания кодов аутентификации (в часах)
-     *
-     * @var integer
-     */
-    const AUTH_CODES_OLDER_THAN = 2;
-
-    /**
-     * Время устаревания сессий (в днях), сессии которыми не пользовались
-     *
-     * @var integer
-     */
-    const SESSIONS_OLDER_THAN = 30;
-
-    /**
-     * Привязка сессии к IP-адресу
-     *
-     * @var boolean
-     */
-    const SESSIONS_BINDING_TO_IP = false;
 }

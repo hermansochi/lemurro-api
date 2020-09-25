@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Параметры SMS
+ * Параметры справочников
  *
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  *
@@ -10,13 +10,11 @@
 
 namespace Lemurro\Api\App\Configs;
 
-use Lemurro\Api\Core\Abstracts\AbstractSettingsSMS;
+use Lemurro\Api\Core\Abstracts\AbstractSettingsGuides;
 
 /**
- * Class SettingsSMS
- *
  * @package Lemurro\Api\App\Configs
  */
-class SettingsSMS extends AbstractSettingsSMS
+class SettingsGuides extends AbstractSettingsGuides
 {
 }
