@@ -1,4 +1,9 @@
 .vscode
+app/Configs/EmailTemplates/AuthCode.php
+app/Configs/EmailTemplates/Footer.php
+app/Configs/EmailTemplates/Header.php
+app/Configs/EmailTemplates/LogoBase64.php
+app/Configs/EmailTemplates/SimpleMessage.php
 app/Configs/SettingsAuth.php
 app/Configs/SettingsCron.php
 app/Configs/SettingsDatabase.php
