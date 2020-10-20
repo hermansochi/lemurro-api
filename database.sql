@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `auth_codes` (
     `id` BIGINT(22) NOT NULL AUTO_INCREMENT,
     `auth_id` VARCHAR(255) NOT NULL,
     `code` VARCHAR(255) NOT NULL,
+    `ip` VARCHAR(255) NOT NULL DEFAULT '',
     `user_id` INT(11) NOT NULL,
     `attempts` TINYINT(3) NOT NULL DEFAULT '0',
     `created_at` DATETIME,
@@ -52,12 +53,16 @@ CREATE TABLE IF NOT EXISTS `example` (
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
-INSERT INTO `example`
-SET `name` = 'Пример раздела №1',
+INSERT INTO
+    `example`
+SET
+    `name` = 'Пример раздела №1',
     `created_at` = '2018-10-28 00:00:00';
 
-INSERT INTO `example`
-SET `name` = 'Пример раздела №2',
+INSERT INTO
+    `example`
+SET
+    `name` = 'Пример раздела №2',
     `created_at` = '2018-10-28 00:00:00';
 
 -- Файлы
@@ -95,12 +100,16 @@ CREATE TABLE IF NOT EXISTS `guide_example` (
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
-INSERT INTO `guide_example`
-SET `name` = 'Пример справочника №1',
+INSERT INTO
+    `guide_example`
+SET
+    `name` = 'Пример справочника №1',
     `created_at` = '2018-10-28 00:00:00';
 
-INSERT INTO `guide_example`
-SET `name` = 'Пример справочника №2',
+INSERT INTO
+    `guide_example`
+SET
+    `name` = 'Пример справочника №2',
     `created_at` = '2018-10-28 00:00:00';
 
 -- История регистраций
@@ -130,8 +139,10 @@ CREATE TABLE IF NOT EXISTS `info_users` (
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
-INSERT INTO `info_users`
-SET `id` = 1,
+INSERT INTO
+    `info_users`
+SET
+    `id` = 1,
     `user_id` = 1,
     `roles` = '{
       "admin": "true"
@@ -168,7 +179,9 @@ CREATE TABLE IF NOT EXISTS `users` (
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
-INSERT INTO `users`
-SET `id` = 1,
+INSERT INTO
+    `users`
+SET
+    `id` = 1,
     `auth_id` = 'lemurro@lemurro',
     `created_at` = '2019-04-30 00:00:00';
