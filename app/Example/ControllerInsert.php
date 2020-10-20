@@ -3,7 +3,7 @@
 /**
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  *
- * @version 10.09.2020
+ * @version 20.10.2020
  */
 
 namespace Lemurro\Api\App\Example;
@@ -19,20 +19,20 @@ class ControllerInsert extends Controller
     /**
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      *
-     * @version 10.09.2020
+     * @version 20.10.2020
      */
     public function start(): Response
     {
         $this->checker->run([
             'auth' => '',
             'role' => [
-                'page'   => 'example',
+                'page' => 'example',
                 'access' => 'create-update',
             ],
         ]);
 
         $this->response->setData((new ActionInsert($this->dic))->run(
-            json_decode($this->request->get('json'), true, 512, JSON_THROW_ON_ERROR)
+            json_decode($this->request->request->get('json'), true, 512, JSON_THROW_ON_ERROR)
         ));
 
         return $this->response;
