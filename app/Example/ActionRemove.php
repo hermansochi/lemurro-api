@@ -3,11 +3,12 @@
 /**
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  *
- * @version 09.09.2020
+ * @version 30.10.2020
  */
 
 namespace Lemurro\Api\App\Example;
 
+use Illuminate\Support\Facades\DB;
 use Lemurro\Api\Core\Abstracts\Action;
 use Lemurro\Api\Core\Helpers\Response;
 
@@ -19,31 +20,31 @@ class ActionRemove extends Action
     /**
      * @param integer $id ИД записи
      *
-     * @return array
-     *
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
      *
-     * @version 09.09.2020
+     * @version 30.10.2020
      */
-    public function run($id)
+    public function run($id): array
     {
         $record = (new OneRecord($this->dic))->get($id);
 
-        if (is_object($record)) {
-            $record->name = $record->name . ' (удалено: ' . $this->datetimenow . ')';
-            $record->deleted_at = $this->datetimenow;
-            $record->save();
-            if (is_object($record) && isset($record->id)) {
-                $this->dic['datachangelog']->insert('example', 'delete', $id);
-
-                return Response::data([
-                    'id' => $record->id,
-                ]);
-            } else {
-                return Response::error500('Произошла ошибка при удалении записи, попробуйте ещё раз');
-            }
-        } else {
+        if ($record === null) {
             return Response::error404('Запись не найдена');
         }
+
+        $affected = DB::table('example')
+            ->where('id', '=', $id)
+            ->update([
+                'name' => $record->name . ' (удалено: ' . $this->datetimenow . ')',
+                'deleted_at' => $this->datetimenow,
+            ]);
+
+        if ($affected === 1) {
+            $this->dic['datachangelog']->insert('example', 'delete', $id);
+        }
+
+        return Response::data([
+            'id' => $record->id,
+        ]);
     }
 }
