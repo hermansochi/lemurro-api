@@ -1,6 +1,6 @@
 .vscode
 app/Overrides/Configs/*.yaml
 http/http-client.env.json
-var/*
+var/*/*
 vendor
 composer.lock
