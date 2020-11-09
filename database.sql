@@ -145,7 +145,7 @@ SET
     `id` = 1,
     `user_id` = 1,
     `roles` = '{
-      "admin": "true"
+      "admin": true
     }',
     `email` = 'lemurro@lemurro',
     `first_name` = 'для',
