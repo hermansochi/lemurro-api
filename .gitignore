@@ -2,6 +2,7 @@
 app/Overrides/Configs/*.yaml
 http/http-client.env.json
 public/test*.php
+tests/api.suite.yml
 var/*/*
 vendor
 composer.lock
