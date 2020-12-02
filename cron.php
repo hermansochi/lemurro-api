@@ -9,19 +9,21 @@
  *
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
  *
- * @version 14.10.2020
+ * @version 02.12.2020
  */
 
 use Lemurro\Api\Core\Cron\Jobby;
 
 require 'vendor/autoload.php';
 
-$jobby = (new Jobby(__DIR__))->init();
+$path_root = __DIR__;
+
+$jobby = (new Jobby($path_root, 'mysql'))->init();
 
 /* ЗДЕСЬ БУДУТ ВАШИ JOBBY-ЗАДАЧИ */
 
 try {
     $jobby->run();
 } catch (Exception $e) {
-    file_put_contents(__DIR__ . '/cron.log', $e->getMessage(), FILE_APPEND);
+    file_put_contents($path_root . '/cron.log', $e->getMessage(), FILE_APPEND);
 }
