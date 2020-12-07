@@ -10,14 +10,15 @@ class BGuideExampleCest extends AbstractCest
     private string $modified_name = 'test record modified';
     private int $record_id;
 
-    // tests
     public function getIndex(ApiTester $I)
     {
         $I->sendGet('/guide/' . $this->type);
 
         $I->seeResponseCodeIs(HttpCode::OK); // 200
         $I->seeResponseIsJson();
-        $I->seeResponseContains('{"success":true,"data":{"js_class":"guideExample","count":0,"items":[]}}');
+        $I->seeResponseContainsJson([
+            'success' => true,
+        ]);
     }
 
     /**
