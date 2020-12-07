@@ -38,6 +38,22 @@ CREATE TABLE IF NOT EXISTS "data_change_logs" (
     "created_at" TIMESTAMP
 );
 
+-- Пример раздела
+CREATE TABLE IF NOT EXISTS "example" (
+    "id" BIGSERIAL NOT NULL PRIMARY KEY,
+    "name" VARCHAR(255),
+    "files" TEXT,
+    "created_at" TIMESTAMP
+    "updated_at" TIMESTAMP,
+    "deleted_at" TIMESTAMP
+);
+
+INSERT INTO "example" ("id", "name", "created_at") VALUES
+(1, 'Пример раздела №1', '2018-10-28 00:00:00');
+
+INSERT INTO "example" ("id", "name", "created_at") VALUES
+(2, 'Пример раздела №2', '2018-10-28 00:00:00');
+
 -- Файлы
 CREATE TABLE IF NOT EXISTS "files" (
     "id" SERIAL NOT NULL PRIMARY KEY,
@@ -61,6 +77,21 @@ CREATE TABLE IF NOT EXISTS "files_downloads" (
     UNIQUE ("token")
 );
 
+-- Пример справочника
+CREATE TABLE IF NOT EXISTS "guide_example" (
+    "id" BIGSERIAL NOT NULL PRIMARY KEY,
+    "name" VARCHAR(255),
+    "created_at" TIMESTAMP
+    "updated_at" TIMESTAMP,
+    "deleted_at" TIMESTAMP
+);
+
+INSERT INTO "guide_example" ("id", "name", "created_at") VALUES
+(1, 'Пример справочника №1', '2018-10-28 00:00:00');
+
+INSERT INTO "guide_example" ("id", "name", "created_at") VALUES
+(2, 'Пример справочника №2', '2018-10-28 00:00:00');
+
 -- История регистраций
 CREATE TABLE IF NOT EXISTS "history_registrations" (
     "id" BIGSERIAL NOT NULL PRIMARY KEY,
@@ -83,7 +114,8 @@ CREATE TABLE IF NOT EXISTS "info_users" (
     "last_name" VARCHAR(255),
     "created_at" TIMESTAMP,
     "updated_at" TIMESTAMP,
-    "deleted_at" TIMESTAMP
+    "deleted_at" TIMESTAMP,
+    UNIQUE ("user_id")
 );
 
 INSERT INTO "info_users" ("id", "user_id", "roles", "email", "first_name", "second_name", "last_name", "created_at") VALUES
@@ -106,12 +138,16 @@ CREATE TABLE IF NOT EXISTS "sessions" (
 -- Пользователи
 CREATE TABLE IF NOT EXISTS "users" (
     "id" SERIAL NOT NULL PRIMARY KEY,
-    "auth_id" VARCHAR(255),
+    "auth_id" VARCHAR(255) NOT NULL,
     "locked" SMALLINT NOT NULL DEFAULT 0,
     "created_at" TIMESTAMP,
     "updated_at" TIMESTAMP,
-    "deleted_at" TIMESTAMP
+    "deleted_at" TIMESTAMP,
+    UNIQUE ("auth_id")
 );
+
+INSERT INTO "users" ("id", "auth_id", "created_at") VALUES
+(1, 'lemurro@lemurro', '2020-11-16 00:00:00');
 
 -- Функция JSON_EXTRACT для совместимости с MySQL
 CREATE OR REPLACE FUNCTION JSON_EXTRACT(roles jsonb, item varchar(255)) RETURNS jsonb AS $$

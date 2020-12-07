@@ -136,7 +136,8 @@ CREATE TABLE IF NOT EXISTS `info_users` (
     `created_at` DATETIME,
     `updated_at` DATETIME,
     `deleted_at` DATETIME,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`user_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
 INSERT INTO
@@ -171,12 +172,13 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 -- Пользователи
 CREATE TABLE IF NOT EXISTS `users` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `auth_id` VARCHAR(255),
+    `auth_id` VARCHAR(255) NOT NULL,
     `locked` TINYINT(1) NOT NULL DEFAULT '0',
     `created_at` DATETIME,
     `updated_at` DATETIME,
     `deleted_at` DATETIME,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`auth_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
 INSERT INTO
