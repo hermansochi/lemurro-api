@@ -1,3 +1,13 @@
+DELETE FROM
+    example
+WHERE
+    name LIKE 'test record%';
+
+DELETE FROM
+    guide_example
+WHERE
+    name LIKE 'test record%';
+
 INSERT INTO
     users
 SET
