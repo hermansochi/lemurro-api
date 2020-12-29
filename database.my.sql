@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `data_change_logs` (
     `data` LONGTEXT,
     `created_at` DATETIME,
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
+) ENGINE = ARCHIVE DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
 -- Пример раздела
 CREATE TABLE IF NOT EXISTS `example` (
