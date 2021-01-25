@@ -23,7 +23,7 @@
     "sort-packages": true
   },
   "require": {
-    "lemurro/api-core": "2.0.*",
+    "lemurro/api-core": "2.1.*",
     "php": ">=7.4.0"
   },
   "require-dev": {
