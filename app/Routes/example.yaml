@@ -1,30 +1,30 @@
 example-index:
   path: /example
   controller: 'Lemurro\Api\App\Example\ControllerIndex'
-  methods: [GET, OPTIONS]
+  methods: GET
 
 example-insert:
   path: /example
   controller: 'Lemurro\Api\App\Example\ControllerInsert'
-  methods: [POST, OPTIONS]
+  methods: POST
 
 example-get:
   path: /example/{id}
   controller: 'Lemurro\Api\App\Example\ControllerGet'
-  methods: [GET, OPTIONS]
+  methods: GET
   requirements:
     id: '\d+'
 
 example-save:
   path: /example/{id}
   controller: 'Lemurro\Api\App\Example\ControllerSave'
-  methods: [POST, OPTIONS]
+  methods: POST
   requirements:
     id: '\d+'
 
 example-remove:
   path: /example/{id}/remove
   controller: 'Lemurro\Api\App\Example\ControllerRemove'
-  methods: [POST, OPTIONS]
+  methods: POST
   requirements:
     id: '\d+'
