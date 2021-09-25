@@ -11,6 +11,9 @@
       "role": "Developer"
     }
   ],
+  "scripts": {
+    "phpcs74": "phpcs -nsp ./app --runtime-set testVersion 7.4 --standard=PHPCompatibility --standard=PSR1 --standard=PSR12 --runtime-set installed_paths ./vendor/phpcompatibility/php-compatibility/PHPCompatibility --report=xml --report-file=./phpcs-report.xml"
+  },
   "autoload": {
     "psr-4": {
       "Lemurro\\Api\\App\\": "app/"
@@ -24,6 +27,7 @@
     "php": ">=7.2.0"
   },
   "require-dev": {
+    "phpcompatibility/php-compatibility": "^9.3",
     "symfony/var-dumper": "^5.1"
   }
 }
