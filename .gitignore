@@ -9,6 +9,7 @@ app/Configs/SettingsPath.php
 app/Configs/SettingsSMS.php
 http/http-client.env.json
 logs/**/*.log
+tests/api.suite.yml
 upload
 vendor
 composer.lock
