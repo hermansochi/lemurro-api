@@ -1,19 +1,9 @@
 <?php
 
-/**
- * Параметры аутентификации
- *
- * @author  Дмитрий Щербаков <atomcms@ya.ru>
- *
- * @version 17.06.2020
- */
-
 namespace Lemurro\Api\App\Configs;
 
 /**
- * Class SettingsAuth
- *
- * @package Lemurro\Api\App\Configs
+ * Параметры аутентификации
  */
 class SettingsAuth
 {
@@ -32,7 +22,7 @@ class SettingsAuth
      *
      * @var boolean
      */
-    const CAN_REGISTRATION_USERS = true;
+    const CAN_REGISTRATION_USERS = false;
 
     /**
      * Количество генераций новых кодов в день
