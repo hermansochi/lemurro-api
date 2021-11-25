@@ -53,6 +53,13 @@ class SettingsFile
     const OUTDATED_FILE_DAYS = 5;
 
     /**
+     * Секретный ключ для подписи JWT-токенов
+     *
+     * @var string
+     */
+    const SECRET_KEY_FOR_TOKENS = 'ChangeMe!';
+
+    /**
      * Через сколько часов токен на скачивание файла считать устаревшим
      *
      * @var integer

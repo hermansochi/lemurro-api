@@ -80,19 +80,6 @@ CREATE TABLE IF NOT EXISTS `files`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
--- Токены скачивания файлов
-CREATE TABLE IF NOT EXISTS `files_downloads`
-(
-    `id`         INT          NOT NULL AUTO_INCREMENT,
-    `type`       VARCHAR(255) NOT NULL,
-    `path`       VARCHAR(255) NOT NULL,
-    `name`       VARCHAR(255) NOT NULL,
-    `token`      VARCHAR(255) NOT NULL,
-    `created_at` DATETIME,
-    PRIMARY KEY (`id`),
-    UNIQUE (`token`)
-) ENGINE = InnoDB;
-
 -- Пример справочника
 CREATE TABLE IF NOT EXISTS `guide_example`
 (

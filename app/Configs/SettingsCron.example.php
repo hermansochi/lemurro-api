@@ -40,13 +40,6 @@ class SettingsCron
     const ERRORS_EMAILS = [];
 
     /**
-     * Выполнять (true) или нет (false) cron-задачу: Очистка устаревших токенов для скачивания файлов
-     *
-     * @var boolean
-     */
-    const FILE_OLDER_TOKENS_ENABLED = true;
-
-    /**
      * Выполнять (true) или нет (false) cron-задачу: Очистка устаревших файлов во временном каталоге
      *
      * @var boolean
