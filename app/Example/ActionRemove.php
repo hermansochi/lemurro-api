@@ -1,50 +1,52 @@
 <?php
-
 /**
- * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * Удаление
  *
- * @version 30.10.2020
+ * @version 29.12.2018
+ * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Example;
 
-use Illuminate\Support\Facades\DB;
 use Lemurro\Api\Core\Abstracts\Action;
 use Lemurro\Api\Core\Helpers\Response;
 
 /**
+ * Class ActionRemove
+ *
  * @package Lemurro\Api\App\Example
  */
 class ActionRemove extends Action
 {
     /**
+     * Выполним действие
+     *
      * @param integer $id ИД записи
      *
-     * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     * @return array
      *
-     * @version 30.10.2020
+     * @version 29.12.2018
+     * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
-    public function run($id): array
+    public function run($id)
     {
         $record = (new OneRecord($this->dic))->get($id);
 
-        if ($record === null) {
+        if (is_object($record)) {
+            $record->name = $record->name . ' (удалено: ' . $this->dic['datetimenow'] . ')';
+            $record->deleted_at = $this->dic['datetimenow'];
+            $record->save();
+            if (is_object($record) && isset($record->id)) {
+                $this->dic['datachangelog']->insert('example', 'delete', $id);
+
+                return Response::data([
+                    'id' => $record->id,
+                ]);
+            } else {
+                return Response::error500('Произошла ошибка при удалении записи, попробуйте ещё раз');
+            }
+        } else {
             return Response::error404('Запись не найдена');
         }
-
-        $affected = DB::table('example')
-            ->where('id', '=', $id)
-            ->update([
-                'name' => $record->name . ' (удалено: ' . $this->datetimenow . ')',
-                'deleted_at' => $this->datetimenow,
-            ]);
-
-        if ($affected === 1) {
-            $this->dic['datachangelog']->insert('example', 'delete', $id);
-        }
-
-        return Response::data([
-            'id' => $record->id,
-        ]);
     }
 }

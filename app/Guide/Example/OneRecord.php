@@ -1,35 +1,43 @@
 <?php
-
 /**
- * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * Получим одну запись по ИД
  *
- * @version 30.10.2020
+ * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * @version 15.10.2019
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
-use Illuminate\Support\Facades\DB;
 use Lemurro\Api\Core\Abstracts\Action;
+use ORM;
 
 /**
+ * Class OneRecord
+ *
  * @package Lemurro\Api\App\Guide\Example
  */
 class OneRecord extends Action
 {
     /**
+     * Выполним действие
+     *
      * @param integer $id ИД записи
      *
-     * @return object|null
+     * @return ORM|false
      *
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
-     *
-     * @version 30.10.2020
+     * @version 15.10.2019
      */
     public function get($id)
     {
-        return DB::table('guide_example')
-            ->whereNull('deleted_at')
-            ->where('id', '=', $id)
-            ->first();
+        $record = ORM::for_table('guide_example')
+            ->where_null('deleted_at')
+            ->find_one($id);
+
+        if (!is_object($record) || $record->id != $id) {
+            return false;
+        }
+
+        return $record;
     }
 }

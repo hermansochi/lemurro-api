@@ -1,39 +1,51 @@
 <?php
-
 /**
- * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * Список справочника
  *
- * @version 28.10.2020
+ * @version 24.12.2018
+ * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
-use Illuminate\Support\Facades\DB;
 use Lemurro\Api\Core\Abstracts\Action;
 use Lemurro\Api\Core\Helpers\Response;
+use ORM;
 
 /**
+ * Class ActionIndex
+ *
  * @package Lemurro\Api\App\Guide\Example
  */
 class ActionIndex extends Action
 {
     /**
-     * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     * Выполним действие
      *
-     * @version 28.10.2020
+     * @return array
+     *
+     * @version 24.12.2018
+     * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
-    public function run(): array
+    public function run()
     {
-        $items = DB::table('guide_example')
-            ->select('id', 'name')
-            ->whereNull('deleted_at')
-            ->orderBy('name')
-            ->get();
-
-        return Response::data([
-            'js_class' => 'guideExample',
-            'count' => $items->count(),
-            'items' => $items,
-        ]);
+        $items = ORM::for_table('guide_example')
+            ->select_many('id', 'name')
+            ->where_null('deleted_at')
+            ->order_by_asc('name')
+            ->find_array();
+        if (is_array($items)) {
+            return Response::data([
+                    'js_class' => 'guideExample',
+                    'count'    => count($items),
+                    'items'    => $items,
+                ]);
+        } else {
+            return Response::data([
+                    'js_class' => 'guideExample',
+                    'count'    => 0,
+                    'items'    => [],
+                ]);
+        }
     }
 }

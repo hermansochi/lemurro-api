@@ -1,18 +1,16 @@
 <?php
-
 /**
- * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ * Запуск приложения
  *
- * @version 02.12.2020
+ * @version 29.04.2019
+ * @author  Дмитрий Щербаков <atomcms@ya.ru>
  */
 
 use Lemurro\Api\Core\Core;
 
-header('Content-type: text/html; charset=UTF-8');
+header("Content-type: text/html; charset=UTF-8");
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require '../vendor/autoload.php';
 
-$path_root = __DIR__ . '/../';
-
-$core = new Core($path_root, 'mysql');
+$core = new Core();
 $core->start();
