@@ -1,43 +1,34 @@
 <?php
+
 /**
- * Список
- *
- * @version 24.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ *
+ * @version 28.10.2020
  */
 
 namespace Lemurro\Api\App\Example;
 
+use Illuminate\Support\Facades\DB;
 use Lemurro\Api\Core\Abstracts\Action;
 use Lemurro\Api\Core\Helpers\Response;
-use ORM;
 
 /**
- * Class ActionIndex
- *
  * @package Lemurro\Api\App\Example
  */
 class ActionIndex extends Action
 {
     /**
-     * Выполним действие
-     *
-     * @return array
-     *
-     * @version 24.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     *
+     * @version 28.10.2020
      */
-    public function run()
+    public function run(): array
     {
-        $items = ORM::for_table('example')
-            ->where_null('deleted_at')
-            ->order_by_asc('name')
-            ->find_array();
+        $items = DB::table('example')
+            ->whereNull('deleted_at')
+            ->orderBy('name')
+            ->get();
 
-        if (is_array($items)) {
-            return Response::data($items);
-        } else {
-            return Response::data([]);
-        }
+        return Response::data($items);
     }
 }

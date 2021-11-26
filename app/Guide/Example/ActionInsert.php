@@ -1,48 +1,42 @@
 <?php
+
 /**
- * Добавление элемента в справочник
- *
- * @version 29.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ *
+ * @version 28.10.2020
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
+use Illuminate\Support\Facades\DB;
 use Lemurro\Api\Core\Abstracts\Action;
 use Lemurro\Api\Core\Helpers\Response;
-use ORM;
 
 /**
- * Class ActionInsert
- *
  * @package Lemurro\Api\App\Guide\Example
  */
 class ActionInsert extends Action
 {
     /**
-     * Выполним действие
-     *
      * @param array $data Массив данных
      *
      * @return array
      *
-     * @version 29.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     *
+     * @version 28.10.2020
      */
     public function run($data)
     {
-        $record = ORM::for_table('guide_example')->create();
-        $record->name = $data['name'];
-        $record->created_at = $this->dic['datetimenow'];
-        $record->save();
-        if (is_object($record) && isset($record->id)) {
-            $data['id'] = $record->id;
+        $id = DB::table('guide_example')->insertGetId([
+            'name' => $data['name'],
+            'created_at' => $this->datetimenow,
+        ]);
 
-            $this->dic['datachangelog']->insert('guide_example', 'insert', $record->id, $data);
+        $data['id'] = $id;
 
-            return Response::data($data);
-        } else {
-            return Response::error500('Произошла ошибка при добавлении записи, попробуйте ещё раз');
-        }
+        $this->dic['datachangelog']->insert('guide_example', 'insert', $id, $data);
+
+        return Response::data($data);
     }
 }

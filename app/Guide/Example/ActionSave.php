@@ -1,51 +1,45 @@
 <?php
+
 /**
- * Изменение элемента в справочнике
- *
- * @version 29.12.2018
  * @author  Дмитрий Щербаков <atomcms@ya.ru>
+ *
+ * @version 30.10.2020
  */
 
 namespace Lemurro\Api\App\Guide\Example;
 
+use Illuminate\Support\Facades\DB;
 use Lemurro\Api\Core\Abstracts\Action;
 use Lemurro\Api\Core\Helpers\Response;
 
 /**
- * Class ActionSave
- *
  * @package Lemurro\Api\App\Guide\Example
  */
 class ActionSave extends Action
 {
     /**
-     * Выполним действие
-     *
      * @param integer $id   ИД записи
      * @param array   $data Массив данных
      *
-     * @return array
-     *
-     * @version 29.12.2018
      * @author  Дмитрий Щербаков <atomcms@ya.ru>
+     *
+     * @version 30.10.2020
      */
-    public function run($id, $data)
+    public function run($id, $data): array
     {
-        $record = (new OneRecord($this->dic))->get($id);
+        $affected = DB::table('guide_example')
+            ->where('id', '=', $id)
+            ->update([
+                'name' => $data['name'],
+                'updated_at' => $this->datetimenow,
+            ]);
 
-        if (is_object($record)) {
-            $record->name = $data['name'];
-            $record->updated_at = $this->dic['datetimenow'];
-            $record->save();
-            if (is_object($record) && isset($record->id)) {
-                $this->dic['datachangelog']->insert('guide_example', 'update', $id, $data);
-
-                return Response::data($data);
-            } else {
-                return Response::error500('Произошла ошибка при изменении записи, попробуйте ещё раз');
-            }
-        } else {
+        if ($affected === 0) {
             return Response::error404('Запись не найдена');
         }
+
+        $this->dic['datachangelog']->insert('guide_example', 'update', $id, $data);
+
+        return Response::data($data);
     }
 }
