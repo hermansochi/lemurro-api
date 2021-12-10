@@ -27,7 +27,7 @@
     "sort-packages": true
   },
   "require": {
-    "lemurro/api-core": "1.9.*",
+    "lemurro/api-core": "1.10.*",
     "php": ">=7.4.0"
   },
   "require-dev": {
@@ -37,6 +37,6 @@
     "codeception/module-phpbrowser": "^1.0",
     "codeception/module-rest": "^1.2",
     "phpcompatibility/php-compatibility": "^9.3",
-    "symfony/var-dumper": "^5.1"
+    "symfony/var-dumper": "^5.4"
   }
 }
