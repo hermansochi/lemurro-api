@@ -203,10 +203,13 @@ class BExampleCest extends AbstractCest
         ]);
 
         $I->seeResponseCodeIs(HttpCode::OK); // 200
-
-        $file_data = file_get_contents(codecept_data_dir($this->file2_name));
-        $file_hash = md5($file_data);
-        $I->seeBinaryResponseEquals($file_hash);
+        $I->seeBinaryResponseEquals(
+            sha1(
+                file_get_contents(
+                    codecept_data_dir($this->file2_name)
+                )
+            )
+        );
     }
 
     /**
