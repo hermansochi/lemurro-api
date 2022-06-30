@@ -27,7 +27,7 @@ class ActionGet extends Action
 
         if (!empty($record['files'])) {
             $files_ids = explode(',', $record['files']);
-            $files_info = (new FileInfo())->getMany($files_ids);
+            $files_info = (new FileInfo($this->dbal))->getMany($files_ids);
 
             if (!$files_info['success']) {
                 $record['files'] = [];
