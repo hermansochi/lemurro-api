@@ -1,41 +1,22 @@
 <?php
-/**
- * Получим одну запись по ИД
- *
- * @author  Дмитрий Щербаков <atomcms@ya.ru>
- * @version 15.10.2019
- */
 
 namespace Lemurro\Api\App\Example;
 
 use Lemurro\Api\Core\Abstracts\Action;
-use ORM;
 
 /**
- * Class OneRecord
- *
- * @package Lemurro\Api\App\Example
+ * Получим одну запись по ИД
  */
 class OneRecord extends Action
 {
     /**
-     * Выполним действие
-     *
-     * @param integer $id ИД записи
-     *
-     * @return ORM|false
-     *
-     * @author  Дмитрий Щербаков <atomcms@ya.ru>
-     * @version 15.10.2019
+     * Получим одну запись по ИД
      */
-    public function get($id)
+    public function get(int $id): ?array
     {
-        $record = ORM::for_table('example')
-            ->where_null('deleted_at')
-            ->find_one($id);
-
-        if (!is_object($record) || $record->id != $id) {
-            return false;
+        $record = $this->dbal->fetchAssociative('SELECT * FROM example WHERE id = ? AND deleted_at IS NULL', [$id]);
+        if ($record === false || (int)$record['id'] !== $id) {
+            return null;
         }
 
         return $record;

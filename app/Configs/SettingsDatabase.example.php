@@ -1,17 +1,9 @@
 <?php
-/**
- * Параметры БД
- *
- * @author  Дмитрий Щербаков <atomcms@ya.ru>
- * @version 21.11.2019
- */
 
 namespace Lemurro\Api\App\Configs;
 
 /**
- * Class SettingsDatabase
- *
- * @package Lemurro\Api\App\Configs
+ * Параметры БД
  */
 class SettingsDatabase
 {
@@ -56,13 +48,4 @@ class SettingsDatabase
      * @var string
      */
     const PASSWORD = '';
-
-    /**
-     * Сбор выполняемых запросов:
-     * ORM::get_last_query() (Возвращает строку)
-     * ORM::get_query_log() (Возвращает массив)
-     *
-     * @var boolean
-     */
-    const LOGGING = true;
 }

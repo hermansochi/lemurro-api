@@ -1,10 +1,4 @@
 <?php
-/**
- * Удаление элемента из справочника
- *
- * @version 29.12.2018
- * @author  Дмитрий Щербаков <atomcms@ya.ru>
- */
 
 namespace Lemurro\Api\App\Guide\Example;
 
@@ -12,41 +6,38 @@ use Lemurro\Api\Core\Abstracts\Action;
 use Lemurro\Api\Core\Helpers\Response;
 
 /**
- * Class ActionRemove
- *
- * @package Lemurro\Api\App\Guide\Example
+ * Удаление элемента из справочника
  */
 class ActionRemove extends Action
 {
     /**
-     * Выполним действие
+     * Удаление элемента из справочника
      *
      * @param integer $id ИД записи
      *
      * @return array
-     *
-     * @version 29.12.2018
-     * @author  Дмитрий Щербаков <atomcms@ya.ru>
      */
     public function run($id)
     {
-        $record = (new OneRecord($this->dic))->get($id);
-
-        if (is_object($record)) {
-            $record->name = $record->name . ' (удалено: ' . $this->dic['datetimenow'] . ')';
-            $record->deleted_at = $this->dic['datetimenow'];
-            $record->save();
-            if (is_object($record) && isset($record->id)) {
-                $this->dic['datachangelog']->insert('guide_example', 'delete', $id);
-
-                return Response::data([
-                    'id' => $record->id,
-                ]);
-            } else {
-                return Response::error500('Произошла ошибка при удалении записи, попробуйте ещё раз');
-            }
-        } else {
+        $record = (new OneRecord($this->dic))->get((int)$id);
+        if (empty($record)) {
             return Response::error404('Запись не найдена');
         }
+
+        $cnt = $this->dbal->update('guide_example', [
+            'name' => $record['name'] . ' (удалено: ' . $this->dic['datetimenow'] . ')',
+            'deleted_at' => $this->dic['datetimenow'],
+        ], [
+            'id' => $record['id']
+        ]);
+        if ($cnt !== 1) {
+            return Response::error500('Произошла ошибка при удалении записи, попробуйте ещё раз');
+        }
+
+        $this->dic['datachangelog']->insert('guide_example', 'delete', $id);
+
+        return Response::data([
+            'id' => $record['id'],
+        ]);
     }
 }
