@@ -14,7 +14,7 @@ class OneRecord extends Action
      */
     public function get(int $id): ?array
     {
-        $record = $this->dbal->fetchAssociative('SELECT * FROM guide_example WHERE id = ? AND deleted_at IS NULL', ['id' => $id]);
+        $record = $this->dbal->fetchAssociative('SELECT * FROM guide_example WHERE id = ? AND deleted_at IS NULL', [$id]);
         if ($record === false || (int)$record['id'] !== $id) {
             return null;
         }
