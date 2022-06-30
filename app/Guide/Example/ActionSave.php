@@ -25,17 +25,16 @@ class ActionSave extends Action
             return Response::error404('Запись не найдена');
         }
 
-        $cnt = $this->dbal->update('guide_example', [
-            'name' => $data['name'],
-            'updated_at' => $this->dic['datetimenow'],
-        ], [
-            'id' => $id
-        ]);
-        if ($cnt !== 1) {
-            return Response::error500('Произошла ошибка при изменении записи, попробуйте ещё раз');
-        }
+        $this->dbal->transactional(function() use ($id, $data): void {
+            $this->dbal->update('guide_example', [
+                'name' => $data['name'],
+                'updated_at' => $this->dic['datetimenow'],
+            ], [
+                'id' => $id
+            ]);
 
-        $this->dic['datachangelog']->insert('guide_example', 'update', $id, $data);
+            $this->dic['datachangelog']->insert('guide_example', 'update', $id, $data);
+        });
 
         return Response::data($data);
     }

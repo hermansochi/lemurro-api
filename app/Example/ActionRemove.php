@@ -24,17 +24,16 @@ class ActionRemove extends Action
             return Response::error404('Запись не найдена');
         }
 
-        $cnt = $this->dbal->update('example', [
-            'name' => $record['name'] . ' (удалено: ' . $this->dic['datetimenow'] . ')',
-            'deleted_at' => $this->dic['datetimenow'],
-        ], [
-            'id' => $id
-        ]);
-        if ($cnt !== 1) {
-            return Response::error500('Произошла ошибка при удалении записи, попробуйте ещё раз');
-        }
+        $this->dbal->transactional(function () use ($id, $record): void {
+            $this->dbal->update('example', [
+                'name' => $record['name'] . ' (удалено: ' . $this->dic['datetimenow'] . ')',
+                'deleted_at' => $this->dic['datetimenow'],
+            ], [
+                'id' => $id
+            ]);
 
-        $this->dic['datachangelog']->insert('example', 'delete', $id);
+            $this->dic['datachangelog']->insert('example', 'delete', $id);
+        });
 
         return Response::data([
             'id' => $record['id'],
