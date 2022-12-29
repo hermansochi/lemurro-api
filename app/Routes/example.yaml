@@ -2,6 +2,8 @@ example-index:
   path: /example
   controller: 'Lemurro\Api\App\Example\ControllerIndex'
   methods: GET
+  defaults:
+    middleware: 'Lemurro\Api\App\Middlewares\MiddlewareExampleIndex'
 
 example-insert:
   path: /example
