@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `users`
     `updated_at` DATETIME,
     `deleted_at` DATETIME,
     PRIMARY KEY (`id`),
-    UNIQUE KEY (`auth_id`)
+    UNIQUE KEY (`auth_id`, `deleted_at`)
 ) ENGINE = InnoDB;
 
 INSERT INTO `users`
