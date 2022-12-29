@@ -27,8 +27,8 @@
     "sort-packages": true
   },
   "require": {
-    "lemurro/api-core": "1.10.*",
-    "php": ">=7.4.0"
+    "lemurro/api-core": "1.11.*",
+    "php": "7.4.*"
   },
   "require-dev": {
     "codeception/codeception": "4.1.29",
