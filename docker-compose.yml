@@ -3,10 +3,14 @@ services:
     lemurro-traefik:
         image: "traefik:2.9"
         command:
-            --api.dashboard=true
-            --api.insecure=true
-            --providers.docker=true
-            --providers.docker.exposedByDefault=false
+            - --providers.docker
+            - --api
+            - --api.dashboard=true
+            - --api.insecure=true
+            - --providers.docker=true
+            - --providers.docker.exposedByDefault=false
+            - --entrypoints.http.address=:80
+            - --log
         ports:
             - "80:80"
             - "8080:8080"
