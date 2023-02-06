@@ -1,6 +1,7 @@
 version: "3.9"
 services:
     lemurro-traefik:
+        container_name: lemurro-traefik
         image: "traefik:2.9"
         command:
             - --providers.docker
@@ -26,6 +27,7 @@ services:
             - traefik.http.services.traefik.loadBalancer.server.port=80
 
     lemurro-api:
+        container_name: api
         build:
             context: api/docker
             dockerfile: dev/nginx/Dockerfile
@@ -42,19 +44,57 @@ services:
             - traefik.http.services.api.loadBalancer.server.port=80
 
     php-fpm:
+        container_name: php-fpm
         build:
             context: api/docker
             dockerfile: dev/php-fpm/Dockerfile
         volumes:
             - ./api:/app:rw
 
-
     php-cli:
+        container_name: php-cli
         build:
             context: api/docker
             dockerfile: dev/php-cli/Dockerfile
         volumes:
             - ./api:/app:rw
+
+    mariadb:
+        image: mariadb:latest
+        container_name: mariadb
+        restart: always
+        environment:
+            MYSQL_USER: adminer
+            MYSQL_PASSWORD: adminer
+            MYSQL_DATABASE: lemurro
+            MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
+        ports:
+            - 5555:3306
+        networks:
+            - default
+        volumes:
+            - db_data:/var/lib/mysql
+
+    adminer:
+        image: adminer:latest
+        container_name: adminer
+        environment:
+            ADMINER_DEFAULT_SERVER: mariadb
+        restart: always
+        ports:
+            - 7777:8080
+        networks:
+            - traefik-public
+            - default
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=traefik-public
+            - traefik.http.routers.adminer.entrypoints=http
+            - traefik.http.routers.adminer.rule=Host(`adminer.localhost`)
+            - traefik.http.services.adminer.loadBalancer.server.port=80
+
+volumes:
+    db_data:
 
 networks:
     traefik-public:
