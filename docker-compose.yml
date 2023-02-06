@@ -18,15 +18,15 @@ services:
             - traefik.enable=true
             - traefik.docker.network=traefik-public
             - traefik.http.routers.traefik.entrypoints=http
-            - traefik.http.routers.traefik.rule=Host(`lemurro-traefik.localhost`)
+            - traefik.http.routers.traefik.rule=Host(`traefik.localhost`)
             - traefik.http.services.traefik.loadBalancer.server.port=80
 
     lemurro-api:
         build:
-            context: docker
+            context: api/docker
             dockerfile: dev/nginx/Dockerfile
         volumes:
-            - ./:/app:rw
+            - ./api:/app:rw
         networks:
             - traefik-public
             - default
@@ -39,18 +39,18 @@ services:
 
     php-fpm:
         build:
-            context: docker
+            context: api/docker
             dockerfile: dev/php-fpm/Dockerfile
         volumes:
-            - ./:/app:rw
+            - ./api:/app:rw
 
 
     php-cli:
         build:
-            context: docker
+            context: api/docker
             dockerfile: dev/php-cli/Dockerfile
         volumes:
-            - ./:/app:rw
+            - ./api:/app:rw
 
 networks:
     traefik-public:

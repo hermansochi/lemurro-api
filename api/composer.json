@@ -1,0 +1,42 @@
+{
+  "name": "lemurro/api",
+  "description": "Lemurro API",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dmitrii Shcherbakov",
+      "email": "info@bestion.ru",
+      "homepage": "http://bestion.ru",
+      "role": "Developer"
+    }
+  ],
+  "scripts": {
+    "phpcs74": "phpcs -nsp ./app --runtime-set testVersion 7.4 --standard=PHPCompatibility --standard=PSR1 --standard=PSR12 --runtime-set installed_paths ./vendor/phpcompatibility/php-compatibility/PHPCompatibility --report=xml --report-file=./phpcs-report.xml",
+    "test": [
+      "codecept clean",
+      "codecept run api"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "Lemurro\\Api\\App\\": "app/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "require": {
+    "lemurro/api-core": "1.10.*",
+    "php": ">=7.4.0"
+  },
+  "require-dev": {
+    "codeception/codeception": "^4.1",
+    "codeception/module-asserts": "^1.0",
+    "codeception/module-db": "^1.0",
+    "codeception/module-phpbrowser": "^1.0",
+    "codeception/module-rest": "^1.2",
+    "phpcompatibility/php-compatibility": "^9.3",
+    "symfony/var-dumper": "^5.4"
+  }
+}
