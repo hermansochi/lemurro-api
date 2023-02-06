@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+    lemurro-traefik:
+        image: "traefik:2.9"
+        command:
+            --api.dashboard=true
+            --api.insecure=true
+            --providers.docker=true
+            --providers.docker.exposedByDefault=false
+        ports:
+            - "80:80"
+            - "8080:8080"
+        networks:
+            - traefik-public
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=traefik-public
+            - traefik.http.routers.traefik.entrypoints=http
+            - traefik.http.routers.traefik.rule=Host(`lemurro-traefik.localhost`)
+            - traefik.http.services.traefik.loadBalancer.server.port=80
+
+    lemurro-api:
+        build:
+            context: docker
+            dockerfile: dev/nginx/Dockerfile
+        volumes:
+            - ./:/app:rw
+        networks:
+            - traefik-public
+            - default
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=traefik-public
+            - traefik.http.routers.api.entrypoints=http
+            - traefik.http.routers.api.rule=Host(`api.localhost`)
+            - traefik.http.services.api.loadBalancer.server.port=80
+
+    php-fpm:
+        build:
+            context: docker
+            dockerfile: dev/php-fpm/Dockerfile
+        volumes:
+            - ./:/app:rw
+
+
+    php-cli:
+        build:
+            context: docker
+            dockerfile: dev/php-cli/Dockerfile
+        volumes:
+            - ./:/app:rw
+
+networks:
+    traefik-public:
+        external: true
